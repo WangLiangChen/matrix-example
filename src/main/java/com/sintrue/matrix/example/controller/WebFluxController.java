@@ -1,7 +1,7 @@
 package com.sintrue.matrix.example.controller;
 
 import com.sintrue.matrix.example.domain.Staff;
-import liangchen.wang.matrix.framework.web.response.FormattedResponse;
+import liangchen.wang.matrix.framework.web.annotation.FormattedResponseIgnore;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,90 +18,59 @@ import java.util.List;
 @RestController
 @RequestMapping("/webflux")
 public class WebFluxController {
-    @GetMapping("/staff")
+    @GetMapping("staff")
+    @FormattedResponseIgnore
     public Staff staff() {
         Staff staff = new Staff();
-        staff.setStaffId(1234567890098765432L);
-        staff.setStaffName("staff");
+        staff.setStaffId(1111111111111111111L);
+        staff.setStaffName("name" + staff.getStaffId());
         staff.setBirthday(LocalDateTime.now());
         return staff;
     }
 
-    @GetMapping("/staffList")
+
+    @GetMapping("staffList")
     public List<Staff> staffList() {
-        List<Staff> staffList = new ArrayList<Staff>() {{
-            Staff staff = new Staff();
-            staff.setStaffId(1234567890098765432L);
-            staff.setStaffName("staff");
-            staff.setBirthday(LocalDateTime.now());
-            add(staff);
-            staff = new Staff();
-            staff.setStaffId(1234567890098765433L);
-            staff.setStaffName("staff");
-            staff.setBirthday(LocalDateTime.now());
-            add(staff);
-        }};
-        return staffList;
+        List<Staff> list = new ArrayList<>();
+        Staff staff = new Staff();
+        staff.setStaffId(1111111111111111111L);
+        staff.setStaffName("name" + staff.getStaffId());
+        staff.setBirthday(LocalDateTime.now());
+        list.add(staff);
+
+        staff = new Staff();
+        staff.setStaffId(1111111111111111112L);
+        staff.setStaffName("name" + staff.getStaffId());
+        staff.setBirthday(LocalDateTime.now());
+        list.add(staff);
+        return list;
     }
 
-    @GetMapping("/staffMono")
+    @GetMapping("staffMono")
+    @FormattedResponseIgnore
     public Mono<Staff> staffMono() {
         Staff staff = new Staff();
-        staff.setStaffId(1234567890098765432L);
-        staff.setStaffName("staff");
+        staff.setStaffId(1111111111111111111L);
+        staff.setStaffName("name" + staff.getStaffId());
         staff.setBirthday(LocalDateTime.now());
         return Mono.just(staff);
     }
 
-    @GetMapping("/staffFlux")
+
+    @GetMapping("staffFlux")
     public Flux<Staff> staffFlux() {
-        List<Staff> staffList = new ArrayList<Staff>() {{
-            Staff staff = new Staff();
-            staff.setStaffId(1234567890098765432L);
-            staff.setStaffName("staff");
-            staff.setBirthday(LocalDateTime.now());
-            add(staff);
-            staff = new Staff();
-            staff.setStaffId(1234567890098765433L);
-            staff.setStaffName("staff");
-            staff.setBirthday(LocalDateTime.now());
-            add(staff);
-        }};
-        return Flux.just(staffList.toArray(new Staff[staffList.size()]));
-    }
-
-    @GetMapping("/staffResponseEntity")
-    public FormattedResponse staffResponseEntity() {
+        List<Staff> list = new ArrayList<>();
         Staff staff = new Staff();
-        staff.setStaffId(1234567890098765432L);
-        staff.setStaffName("staff");
+        staff.setStaffId(1111111111111111111L);
+        staff.setStaffName("name" + staff.getStaffId());
         staff.setBirthday(LocalDateTime.now());
-        return FormattedResponse.success().payload(staff);
-    }
+        list.add(staff);
 
-    @GetMapping("/staffResponseEntityList")
-    public List<FormattedResponse<Staff>> staffResponseEntityList() {
-        List<FormattedResponse<Staff>> staffList = new ArrayList<FormattedResponse<Staff>>() {{
-            Staff staff = new Staff();
-            staff.setStaffId(1234567890098765432L);
-            staff.setStaffName("staff");
-            staff.setBirthday(LocalDateTime.now());
-            add(FormattedResponse.success().payload(staff));
-            staff = new Staff();
-            staff.setStaffId(1234567890098765433L);
-            staff.setStaffName("staff");
-            staff.setBirthday(LocalDateTime.now());
-            add(FormattedResponse.success().payload(staff));
-        }};
-        return staffList;
-    }
-
-    @GetMapping("/staffResponseEntityMono")
-    public Mono<FormattedResponse> staffResponseEntityMono() {
-        Staff staff = new Staff();
-        staff.setStaffId(1234567890098765432L);
-        staff.setStaffName("staff");
+        staff = new Staff();
+        staff.setStaffId(1111111111111111112L);
+        staff.setStaffName("name" + staff.getStaffId());
         staff.setBirthday(LocalDateTime.now());
-        return Mono.just(FormattedResponse.success().payload(staff));
+        list.add(staff);
+        return Flux.fromStream(list.parallelStream());
     }
 }
