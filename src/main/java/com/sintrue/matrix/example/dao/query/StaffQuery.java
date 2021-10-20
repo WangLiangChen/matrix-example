@@ -1,6 +1,6 @@
 package com.sintrue.matrix.example.dao.query;
 
-import liangchen.wang.matrix.framework.data.dao.RootQuery;
+import liangchen.wang.matrix.framework.data.query.RootQuery;
 
 import javax.persistence.Table;
 
