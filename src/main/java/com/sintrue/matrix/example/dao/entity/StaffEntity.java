@@ -1,5 +1,7 @@
 package com.sintrue.matrix.example.dao.entity;
 
+import liangchen.wang.matrix.framework.data.dao.RootEntity;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
@@ -8,7 +10,7 @@ import java.time.LocalDateTime;
  * @author Liangchen.Wang 2021-10-19 16:38
  */
 @Entity(name = "staff")
-public class Staff {
+public class StaffEntity extends RootEntity {
     @Id
     private Long staff_id;
     private String staff_name;

@@ -1,12 +1,12 @@
 package com.sintrue.matrix.example.manager;
 
-import com.sintrue.matrix.example.dao.entity.Staff;
+import com.sintrue.matrix.example.dao.entity.StaffEntity;
 
 /**
  * @author Liangchen.Wang 2021-10-19 16:50
  */
 public interface StaffManager {
-    void insert(Staff domain);
+    void insert(StaffEntity domain);
 
-    Staff find(Long id);
+    StaffEntity find(Long id);
 }

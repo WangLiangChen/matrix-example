@@ -1,7 +1,7 @@
 package com.sintrue.matrix.example.manager.impl;
 
 import com.sintrue.matrix.example.dao.StaffDao;
-import com.sintrue.matrix.example.dao.entity.Staff;
+import com.sintrue.matrix.example.dao.entity.StaffEntity;
 import com.sintrue.matrix.example.manager.StaffManager;
 import org.springframework.stereotype.Component;
 
@@ -22,14 +22,14 @@ public class StaffManagerImpl implements StaffManager {
 
     @Override
     @Transactional
-    public void insert(Staff domain) {
+    public void insert(StaffEntity domain) {
         dao.insert(domain);
     }
 
     @Override
     @Transactional
-    public Staff find(Long id) {
-        Staff staff = dao.find(id);
+    public StaffEntity find(Long id) {
+        StaffEntity staff = dao.find(id);
         return staff;
     }
 }

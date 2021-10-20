@@ -1,6 +1,6 @@
 package com.sintrue.matrix.example.test;
 
-import com.sintrue.matrix.example.dao.entity.Staff;
+import com.sintrue.matrix.example.dao.entity.StaffEntity;
 import com.sintrue.matrix.example.manager.StaffManager;
 import liangchen.wang.matrix.framework.data.annotation.EnableJdbc;
 import org.junit.jupiter.api.Test;
@@ -20,7 +20,7 @@ public class StaffTest {
 
     @Test
     public void insert() {
-        Staff staff = new Staff();
+        StaffEntity staff = new StaffEntity();
         staff.setStaff_id(0L);
         staff.setStaff_name("0_name");
         staff.setStaff_birthday(LocalDateTime.now());
@@ -29,6 +29,6 @@ public class StaffTest {
 
     @Test
     public void find() {
-        Staff staff = manager.find(0L);
+        StaffEntity staff = manager.find(0L);
     }
 }

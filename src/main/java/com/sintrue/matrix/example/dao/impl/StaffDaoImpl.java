@@ -1,29 +1,30 @@
 package com.sintrue.matrix.example.dao.impl;
 
 import com.sintrue.matrix.example.dao.StaffDao;
-import com.sintrue.matrix.example.dao.entity.Staff;
+import com.sintrue.matrix.example.dao.entity.StaffEntity;
+import com.sintrue.matrix.example.dao.query.StaffQuery;
+import liangchen.wang.matrix.framework.data.dao.AbstractDao;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
-import javax.persistence.FlushModeType;
 import javax.persistence.PersistenceContext;
 
 /**
  * @author Liangchen.Wang 2021-10-19 16:43
  */
 @Component
-public class StaffDaoImpl implements StaffDao {
+public class StaffDaoImpl extends AbstractDao<StaffEntity, StaffQuery> implements StaffDao {
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
-    public void insert(Staff entity) {
+    public void insert(StaffEntity entity) {
         entityManager.persist(entity);
     }
 
     @Override
-    public Staff find(Long id) {
-        Staff staff = entityManager.find(Staff.class, id);
+    public StaffEntity find(Long id) {
+        StaffEntity staff = entityManager.find(StaffEntity.class, id);
         return staff;
     }
 }
