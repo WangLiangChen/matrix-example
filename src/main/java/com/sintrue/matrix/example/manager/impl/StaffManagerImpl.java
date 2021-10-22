@@ -41,6 +41,6 @@ public class StaffManagerImpl implements StaffManager {
     @Override
     @Transactional
     public void delete(StaffEntity staff) {
-        standaloneCommandDao.delete(staff);
+
     }
 }
