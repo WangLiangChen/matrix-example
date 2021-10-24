@@ -26,7 +26,8 @@ public class StaffTest {
     public void testInsert() {
         StaffEntity entity = new StaffEntity();
         entity.setStaff_id(1000L);
-        entity.setStaff_name("1000_name");
+        entity.setStaffName("1000_name");
+        entity.setStaffSex("male");
         entity.setStaff_birthday(LocalDateTime.now());
         manager.insert(entity);
     }
@@ -37,17 +38,12 @@ public class StaffTest {
         for (int i = 0; i < 10; i++) {
             StaffEntity entity = new StaffEntity();
             entity.setStaff_id((long) i);
-            entity.setStaff_name(i + "_name");
+            entity.setStaffName(i + "_name");
+            entity.setStaffSex("female");
             entity.setStaff_birthday(LocalDateTime.now());
             entities.add(entity);
         }
         manager.insertBatch(entities);
     }
 
-    @Test
-    public void testDelete() {
-        StaffEntity entity = new StaffEntity();
-        entity.setStaff_id(1000L);
-        manager.delete(entity);
-    }
 }

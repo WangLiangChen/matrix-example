@@ -2,6 +2,7 @@ package com.sintrue.matrix.example.dao.entity;
 
 import liangchen.wang.matrix.framework.data.dao.entity.RootEntity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
@@ -13,7 +14,9 @@ import java.time.LocalDateTime;
 public class StaffEntity extends RootEntity {
     @Id
     private Long staff_id;
-    private String staff_name;
+    private String staffName;
+    @Column(name = "staff_gender")
+    private String staffSex;
     private LocalDateTime staff_birthday;
 
     public Long getStaff_id() {
@@ -24,12 +27,20 @@ public class StaffEntity extends RootEntity {
         this.staff_id = staff_id;
     }
 
-    public String getStaff_name() {
-        return staff_name;
+    public String getStaffName() {
+        return staffName;
     }
 
-    public void setStaff_name(String staff_name) {
-        this.staff_name = staff_name;
+    public void setStaffName(String staffName) {
+        this.staffName = staffName;
+    }
+
+    public String getStaffSex() {
+        return staffSex;
+    }
+
+    public void setStaffSex(String staffSex) {
+        this.staffSex = staffSex;
     }
 
     public LocalDateTime getStaff_birthday() {

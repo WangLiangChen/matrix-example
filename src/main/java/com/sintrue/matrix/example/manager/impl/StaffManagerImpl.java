@@ -24,14 +24,12 @@ public class StaffManagerImpl implements StaffManager {
         this.standaloneCommandDao = standaloneCommandDao;
     }
 
-    @DataSource("one")
     @Transactional
     @Override
     public void insert(StaffEntity entity) {
         standaloneCommandDao.insert(entity);
     }
 
-    @DataSource("one")
     @Transactional
     @Override
     public void insertBatch(List<StaffEntity> entities) {
