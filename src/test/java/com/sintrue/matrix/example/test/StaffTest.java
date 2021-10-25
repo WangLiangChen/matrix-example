@@ -25,8 +25,8 @@ public class StaffTest {
     @Test
     public void testInsert() {
         StaffEntity entity = new StaffEntity();
-        entity.setStaff_id(1000L);
-        entity.setStaffName("1000_name");
+        entity.setStaff_id(2000L);
+        entity.setStaffName("2000_name");
         entity.setStaffSex("male");
         entity.setStaff_birthday(LocalDateTime.now());
         manager.insert(entity);
@@ -39,11 +39,26 @@ public class StaffTest {
             StaffEntity entity = new StaffEntity();
             entity.setStaff_id((long) i);
             entity.setStaffName(i + "_name");
-            entity.setStaffSex("female");
+            entity.setStaffSex("male");
+            if (i % 3 == 0) {
+                entity.setStaffSex("female");
+            }
             entity.setStaff_birthday(LocalDateTime.now());
             entities.add(entity);
         }
         manager.insertBatch(entities);
+    }
+
+    @Test
+    public void update() {
+        StaffEntity entity = new StaffEntity();
+        entity.setStaff_id(0L);
+        entity.setStaffName("0_name_0");
+        // 自定义列更新
+        entity.put("staff_birthday", LocalDateTime.now());
+        // 置为null
+        entity.put("staff_gender", null);
+        manager.update(entity);
     }
 
 }

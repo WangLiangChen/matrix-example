@@ -1,10 +1,12 @@
 package com.sintrue.matrix.example.manager.impl;
 
 import com.sintrue.matrix.example.dao.entity.StaffEntity;
+import com.sintrue.matrix.example.dao.query.StaffQuery;
 import com.sintrue.matrix.example.manager.StaffManager;
 import liangchen.wang.matrix.framework.data.annotation.DataSource;
 import liangchen.wang.matrix.framework.data.annotation.DataSourceSwitchable;
 import liangchen.wang.matrix.framework.data.dao.StandaloneCommandDao;
+import liangchen.wang.matrix.framework.data.query.RootQuery;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
@@ -25,6 +27,7 @@ public class StaffManagerImpl implements StaffManager {
     }
 
     @Transactional
+    @DataSource("one")
     @Override
     public void insert(StaffEntity entity) {
         standaloneCommandDao.insert(entity);
@@ -38,7 +41,25 @@ public class StaffManagerImpl implements StaffManager {
 
     @Override
     @Transactional
-    public void delete(StaffEntity staff) {
+    public void delete(StaffEntity entity) {
+        standaloneCommandDao.delete(entity);
+    }
 
+    @Override
+    @Transactional
+    public void deleteByQuery(RootQuery query) {
+        standaloneCommandDao.deleteByQuery(query);
+    }
+
+    @Transactional
+    @Override
+    public void update(StaffEntity entity) {
+        standaloneCommandDao.update(entity);
+    }
+
+    @Transactional
+    @Override
+    public void update(StaffEntity entity, StaffQuery query) {
+        standaloneCommandDao.updateByQuery(entity, query);
     }
 }
