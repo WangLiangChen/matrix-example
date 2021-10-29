@@ -2,6 +2,7 @@ package com.sintrue.matrix.example.manager;
 
 import com.sintrue.matrix.example.dao.entity.StaffEntity;
 import com.sintrue.matrix.example.dao.query.StaffQuery;
+import liangchen.wang.matrix.framework.data.pagination.PaginationResult;
 import liangchen.wang.matrix.framework.data.query.RootQuery;
 
 import javax.transaction.Transactional;
@@ -27,4 +28,10 @@ public interface StaffManager {
 
     @Transactional
     void update(StaffEntity entity, StaffQuery query);
+
+    List<StaffEntity> list(StaffQuery query, String... returnFields);
+
+    int count(StaffQuery query);
+
+    PaginationResult<StaffEntity> pagination(StaffQuery query, String... columns);
 }

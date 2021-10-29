@@ -71,20 +71,46 @@ public class StaffTest {
         query.setStaffSex("female");
         manager.update(entity, query);
     }
+
     @Test
-    public void delete(){
+    public void delete() {
         StaffEntity entity = new StaffEntity();
         entity.setStaff_id(0L);
         entity.setStaffName("xxxx");
-        manager.delete(entity);;
+        manager.delete(entity);
+        ;
     }
 
     @Test
-    public void deleteByQuery(){
+    public void deleteByQuery() {
         StaffQuery query = new StaffQuery();
         query.setStaff_id(0L);
         query.setStaffName("xxxx");
-        manager.deleteByQuery(query);;
+        manager.deleteByQuery(query);
+        ;
+    }
+
+    @Test
+    public void testList() {
+        StaffQuery query = new StaffQuery();
+        query.setStaff_id(0L);
+        query.setStaffName("xxxx");
+        manager.list(query, "staff_name");
+    }
+
+    @Test
+    public void testCount() {
+        StaffQuery query = new StaffQuery();
+        query.setStaff_id(0L);
+        query.setStaffName("xxxx");
+        manager.count(query);
+    }
+
+    @Test
+    public void testPagination() {
+        StaffQuery query = new StaffQuery();
+        query.setStaff_id(1L);
+        manager.pagination(query);
     }
 
 }
