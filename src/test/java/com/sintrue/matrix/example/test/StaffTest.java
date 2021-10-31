@@ -5,13 +5,15 @@ import com.sintrue.matrix.example.dao.query.StaffQuery;
 import com.sintrue.matrix.example.manager.StaffManager;
 import liangchen.wang.matrix.framework.commons.object.NullValue;
 import liangchen.wang.matrix.framework.data.annotation.EnableJdbc;
+import liangchen.wang.matrix.framework.data.dao.IDBLock;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * @author Liangchen.Wang 2021-10-19 16:57
@@ -19,8 +21,10 @@ import java.util.List;
 @SpringBootTest
 @EnableJdbc
 public class StaffTest {
-    @Resource
+    @Inject
     private StaffManager manager;
+    @Inject
+    private IDBLock lock;
 
     @Test
     public void testInsert() {
@@ -111,6 +115,19 @@ public class StaffTest {
         StaffQuery query = new StaffQuery();
         query.setStaff_id(1L);
         manager.pagination(query);
+    }
+
+    @Test
+    public void testLock() throws InterruptedException {
+        int count = 5;
+        CountDownLatch countDownLatch = new CountDownLatch(count);
+        for (int i = 0; i < count; i++) {
+            new Thread(() -> {
+                manager.executeInLock();
+                countDownLatch.countDown();
+            }).start();
+        }
+        countDownLatch.await();
     }
 
 }

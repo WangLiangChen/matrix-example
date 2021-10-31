@@ -5,6 +5,7 @@ import com.sintrue.matrix.example.dao.query.StaffQuery;
 import com.sintrue.matrix.example.manager.StaffManager;
 import liangchen.wang.matrix.framework.data.annotation.DataSource;
 import liangchen.wang.matrix.framework.data.annotation.DataSourceSwitchable;
+import liangchen.wang.matrix.framework.data.dao.IDBLock;
 import liangchen.wang.matrix.framework.data.dao.StandaloneDao;
 import liangchen.wang.matrix.framework.data.pagination.PaginationResult;
 import liangchen.wang.matrix.framework.data.query.RootQuery;
@@ -21,10 +22,13 @@ import java.util.List;
 @DataSourceSwitchable
 public class StaffManagerImpl implements StaffManager {
     private final StandaloneDao standaloneDao;
+    private final IDBLock lock;
+    private int flag = 0;
 
     @Inject
-    public StaffManagerImpl(StandaloneDao standaloneDao) {
+    public StaffManagerImpl(StandaloneDao standaloneDao, IDBLock lock) {
         this.standaloneDao = standaloneDao;
+        this.lock = lock;
     }
 
     @Transactional
@@ -77,5 +81,13 @@ public class StaffManagerImpl implements StaffManager {
     @Override
     public PaginationResult<StaffEntity> pagination(StaffQuery query, String... columns) {
         return standaloneDao.pagination(StaffEntity.class, query, columns);
+    }
+
+    @Override
+    public void executeInLock() {
+        lock.executeInLock("testLock", () -> {
+            flag++;
+            System.out.println(Thread.currentThread().getName() + "=================>" + flag);
+        });
     }
 }

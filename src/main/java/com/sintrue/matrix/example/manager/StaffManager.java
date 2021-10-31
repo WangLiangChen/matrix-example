@@ -34,4 +34,6 @@ public interface StaffManager {
     int count(StaffQuery query);
 
     PaginationResult<StaffEntity> pagination(StaffQuery query, String... columns);
+
+    void executeInLock();
 }
