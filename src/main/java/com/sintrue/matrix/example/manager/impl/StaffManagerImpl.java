@@ -3,12 +3,12 @@ package com.sintrue.matrix.example.manager.impl;
 import com.sintrue.matrix.example.dao.entity.StaffEntity;
 import com.sintrue.matrix.example.dao.query.StaffQuery;
 import com.sintrue.matrix.example.manager.StaffManager;
-import liangchen.wang.matrix.framework.data.annotation.DataSource;
-import liangchen.wang.matrix.framework.data.annotation.DataSourceSwitchable;
-import liangchen.wang.matrix.framework.data.dao.IDBLock;
-import liangchen.wang.matrix.framework.data.dao.StandaloneDao;
-import liangchen.wang.matrix.framework.data.pagination.PaginationResult;
-import liangchen.wang.matrix.framework.data.query.RootQuery;
+import wang.liangchen.matrix.framework.data.annotation.DataSource;
+import wang.liangchen.matrix.framework.data.annotation.DataSourceSwitchable;
+import wang.liangchen.matrix.framework.data.dao.IDBLock;
+import wang.liangchen.matrix.framework.data.dao.StandaloneDao;
+import wang.liangchen.matrix.framework.data.pagination.PaginationResult;
+import wang.liangchen.matrix.framework.data.query.RootQuery;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;

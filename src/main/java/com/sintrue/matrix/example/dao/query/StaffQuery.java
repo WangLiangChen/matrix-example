@@ -1,8 +1,8 @@
 package com.sintrue.matrix.example.dao.query;
 
-import liangchen.wang.matrix.framework.data.annotation.Query;
-import liangchen.wang.matrix.framework.data.query.Operator;
-import liangchen.wang.matrix.framework.data.query.RootQuery;
+import wang.liangchen.matrix.framework.data.annotation.Query;
+import wang.liangchen.matrix.framework.data.query.Operator;
+import wang.liangchen.matrix.framework.data.query.RootQuery;
 
 import javax.persistence.Table;
 import java.time.LocalDateTime;

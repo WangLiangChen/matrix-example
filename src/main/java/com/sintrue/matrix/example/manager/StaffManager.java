@@ -2,8 +2,8 @@ package com.sintrue.matrix.example.manager;
 
 import com.sintrue.matrix.example.dao.entity.StaffEntity;
 import com.sintrue.matrix.example.dao.query.StaffQuery;
-import liangchen.wang.matrix.framework.data.pagination.PaginationResult;
-import liangchen.wang.matrix.framework.data.query.RootQuery;
+import wang.liangchen.matrix.framework.data.pagination.PaginationResult;
+import wang.liangchen.matrix.framework.data.query.RootQuery;
 
 import javax.transaction.Transactional;
 import java.util.List;

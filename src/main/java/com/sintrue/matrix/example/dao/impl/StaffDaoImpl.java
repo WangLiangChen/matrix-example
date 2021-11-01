@@ -3,7 +3,7 @@ package com.sintrue.matrix.example.dao.impl;
 import com.sintrue.matrix.example.dao.StaffDao;
 import com.sintrue.matrix.example.dao.entity.StaffEntity;
 import com.sintrue.matrix.example.dao.query.StaffQuery;
-import liangchen.wang.matrix.framework.data.dao.AbstractParameterizedDao;
+import wang.liangchen.matrix.framework.data.dao.AbstractParameterizedDao;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;

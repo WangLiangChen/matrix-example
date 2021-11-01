@@ -3,9 +3,9 @@ package com.sintrue.matrix.example.test;
 import com.sintrue.matrix.example.dao.entity.StaffEntity;
 import com.sintrue.matrix.example.dao.query.StaffQuery;
 import com.sintrue.matrix.example.manager.StaffManager;
-import liangchen.wang.matrix.framework.commons.object.NullValue;
-import liangchen.wang.matrix.framework.data.annotation.EnableJdbc;
-import liangchen.wang.matrix.framework.data.dao.IDBLock;
+import wang.liangchen.matrix.framework.commons.object.NullValue;
+import wang.liangchen.matrix.framework.data.annotation.EnableJdbc;
+import wang.liangchen.matrix.framework.data.dao.IDBLock;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

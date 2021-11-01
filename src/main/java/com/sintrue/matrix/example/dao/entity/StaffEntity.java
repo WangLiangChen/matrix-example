@@ -1,6 +1,6 @@
 package com.sintrue.matrix.example.dao.entity;
 
-import liangchen.wang.matrix.framework.data.dao.entity.RootEntity;
+import wang.liangchen.matrix.framework.data.dao.entity.RootEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

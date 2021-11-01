@@ -1,6 +1,6 @@
 package com.sintrue.matrix.example;
 
-import liangchen.wang.matrix.framework.web.annotation.EnableWeb;
+import wang.liangchen.matrix.framework.web.annotation.EnableWeb;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
