@@ -1,7 +1,7 @@
 package com.sintrue.matrix.example.test;
 
 import com.sintrue.matrix.example.dao.entity.StaffEntity;
-import wang.liangchen.matrix.framework.commons.object.ClassUtil;
+import wang.liangchen.matrix.framework.commons.type.ClassUtil;
 import wang.liangchen.matrix.framework.commons.utils.StringUtil;
 import org.junit.jupiter.api.Test;
 
