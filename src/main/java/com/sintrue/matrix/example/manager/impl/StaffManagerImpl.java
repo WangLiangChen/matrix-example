@@ -1,93 +1,22 @@
 package com.sintrue.matrix.example.manager.impl;
 
-import com.sintrue.matrix.example.dao.entity.StaffEntity;
-import com.sintrue.matrix.example.dao.query.StaffQuery;
 import com.sintrue.matrix.example.manager.StaffManager;
-import wang.liangchen.matrix.framework.data.annotation.DataSource;
-import wang.liangchen.matrix.framework.data.annotation.DataSourceSwitchable;
-import wang.liangchen.matrix.framework.data.dao.IDBLock;
-import wang.liangchen.matrix.framework.data.dao.StandaloneDao;
-import wang.liangchen.matrix.framework.data.pagination.PaginationResult;
-import wang.liangchen.matrix.framework.data.query.RootQuery;
+import com.sintrue.matrix.example.manager.domain.StaffDomain;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Component;
 
-import javax.inject.Inject;
-import javax.transaction.Transactional;
-import java.util.List;
-
-/**
- * @author Liangchen.Wang 2021-10-19 16:51
- */
 @Component
-@DataSourceSwitchable
+@EnableCaching
+@Cacheable(value = "abc")
 public class StaffManagerImpl implements StaffManager {
-    private final StandaloneDao standaloneDao;
-    private final IDBLock lock;
-    private int flag = 0;
-
-    @Inject
-    public StaffManagerImpl(StandaloneDao standaloneDao, IDBLock lock) {
-        this.standaloneDao = standaloneDao;
-        this.lock = lock;
-    }
-
-    @Transactional
-    @DataSource("one")
-    @Override
-    public void insert(StaffEntity entity) {
-        standaloneDao.insert(entity);
-    }
-
-    @Transactional
-    @Override
-    public void insertBatch(List<StaffEntity> entities) {
-        standaloneDao.insertBatch(entities);
-    }
 
     @Override
-    @Transactional
-    public void delete(StaffEntity entity) {
-        standaloneDao.delete(entity);
-    }
-
-    @Override
-    @Transactional
-    public void deleteByQuery(RootQuery query) {
-        standaloneDao.deleteByQuery(query);
-    }
-
-    @Transactional
-    @Override
-    public void update(StaffEntity entity) {
-        standaloneDao.update(entity);
-    }
-
-    @Transactional
-    @Override
-    public void update(StaffEntity entity, StaffQuery query) {
-        standaloneDao.updateByQuery(entity, query);
-    }
-
-    @Override
-    public List<StaffEntity> list(StaffQuery query, String... returnFields) {
-        return standaloneDao.list(StaffEntity.class, query, returnFields);
-    }
-
-    @Override
-    public int count(StaffQuery query) {
-        return standaloneDao.count(query);
-    }
-
-    @Override
-    public PaginationResult<StaffEntity> pagination(StaffQuery query, String... columns) {
-        return standaloneDao.pagination(StaffEntity.class, query, columns);
-    }
-
-    @Override
-    public void executeInLock() {
-        lock.executeInLock("testLock", () -> {
-            flag++;
-            System.out.println(Thread.currentThread().getName() + "=================>" + flag);
-        });
+    public StaffDomain find(Long staffId) {
+        StaffDomain domain = new StaffDomain();
+        domain.setStaffId(staffId);
+        domain.setStaffName("Liangchen.Wang");
+        System.out.println("-------invoke find--------");
+        return domain;
     }
 }
