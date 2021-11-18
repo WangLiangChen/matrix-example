@@ -4,6 +4,7 @@ import com.sintrue.matrix.example.manager.StaffManager;
 import com.sintrue.matrix.example.manager.domain.StaffDomain;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 public class StaffManagerImpl implements StaffManager {
 
     @Override
+    @Async
     public StaffDomain find(Long staffId) {
         StaffDomain domain = new StaffDomain();
         domain.setStaffId(staffId);

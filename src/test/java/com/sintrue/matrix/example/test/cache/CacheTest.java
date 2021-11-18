@@ -6,8 +6,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.scheduling.annotation.Async;
+import wang.liangchen.matrix.framework.springboot.context.BeanLoader;
 
 import javax.inject.Inject;
+import java.util.Map;
+import java.util.concurrent.Executor;
 
 @SpringBootTest
 public class CacheTest {
@@ -18,6 +22,11 @@ public class CacheTest {
     public void findStaff(){
         staffManager.find(0L);
         staffManager.find(0L);
+        staffManager.find(0L);
+        staffManager.find(0L);
+        staffManager.find(0L);
+        System.out.println();
+        Map<String, Executor> beansOfType = BeanLoader.INSTANCE.getBeansOfType(Executor.class);
         System.out.println();
     }
 }
