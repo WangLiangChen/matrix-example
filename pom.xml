@@ -42,12 +42,12 @@
     <dependencies>
         <dependency>
             <groupId>wang.liangchen.matrix</groupId>
-            <artifactId>matrix.framework.web</artifactId>
+            <artifactId>matrix-framework-web</artifactId>
             <version>${version.matrix}</version>
         </dependency>
         <dependency>
             <groupId>wang.liangchen.matrix</groupId>
-            <artifactId>matrix.framework.data</artifactId>
+            <artifactId>matrix-framework-data</artifactId>
             <version>${version.matrix}</version>
         </dependency>
         <dependency>
