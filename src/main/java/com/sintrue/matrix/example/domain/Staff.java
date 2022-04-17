@@ -1,0 +1,52 @@
+package com.sintrue.matrix.example.domain;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.time.LocalDate;
+
+/**
+ * @author Liangchen.Wang 2022-04-17 14:26
+ */
+@Entity(name = "staff")
+public class Staff {
+    @Id
+    private Long staff_id;
+    private String staffName;
+
+    @Column(name = "staff_gender")
+    private String staff_sex;
+    private LocalDate staff_birthday;
+
+    public Long getStaff_id() {
+        return staff_id;
+    }
+
+    public void setStaff_id(Long staff_id) {
+        this.staff_id = staff_id;
+    }
+
+    public String getStaffName() {
+        return staffName;
+    }
+
+    public void setStaffName(String staffName) {
+        this.staffName = staffName;
+    }
+
+    public String getStaff_sex() {
+        return staff_sex;
+    }
+
+    public void setStaff_sex(String staff_sex) {
+        this.staff_sex = staff_sex;
+    }
+
+    public LocalDate getStaff_birthday() {
+        return staff_birthday;
+    }
+
+    public void setStaff_birthday(LocalDate staff_birthday) {
+        this.staff_birthday = staff_birthday;
+    }
+}

@@ -1,14 +1,14 @@
 package com.sintrue.matrix.example;
 
-import wang.liangchen.matrix.framework.web.annotation.EnableWeb;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import wang.liangchen.matrix.framework.data.annotation.EnableJdbc;
 
 /**
  * @author Liangchen.Wang
  */
 @SpringBootApplication
-@EnableWeb
+@EnableJdbc
 public class ExampleInitializer {
     public static void main(String[] args) {
         SpringApplication springApplication = new SpringApplication(ExampleInitializer.class);
