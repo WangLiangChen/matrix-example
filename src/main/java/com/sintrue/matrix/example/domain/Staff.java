@@ -1,5 +1,7 @@
 package com.sintrue.matrix.example.domain;
 
+import wang.liangchen.matrix.framework.data.dao.entity.RootEntity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,7 +11,7 @@ import java.time.LocalDate;
  * @author Liangchen.Wang 2022-04-17 14:26
  */
 @Entity(name = "staff")
-public class Staff {
+public class Staff extends RootEntity {
     @Id
     private Long staff_id;
     private String staffName;
@@ -48,5 +50,15 @@ public class Staff {
 
     public void setStaff_birthday(LocalDate staff_birthday) {
         this.staff_birthday = staff_birthday;
+    }
+
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "staff_id=" + staff_id +
+                ", staffName='" + staffName + '\'' +
+                ", staff_sex='" + staff_sex + '\'' +
+                ", staff_birthday=" + staff_birthday +
+                '}';
     }
 }
