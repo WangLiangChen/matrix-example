@@ -6,7 +6,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import wang.liangchen.matrix.framework.data.dao.StandaloneDao;
 import wang.liangchen.matrix.framework.data.dao.criteria.Criteria;
 import wang.liangchen.matrix.framework.data.dao.criteria.SqlValue;
-import wang.liangchen.matrix.framework.data.pagination.OrderByDirection;
+import wang.liangchen.matrix.framework.data.dao.criteria.SubCriteria;
+import wang.liangchen.matrix.framework.data.dao.criteria.UpdateCriteria;
 
 import javax.inject.Inject;
 import java.time.LocalDate;
@@ -48,6 +49,12 @@ public class ExampleTests {
     }
 
     @Test
+    public void testUpdate() {
+        Staff staff = new Staff();
+        UpdateCriteria.of(staff).equals(Staff::getStaff_id, SqlValue.of("abc"));
+    }
+
+    @Test
     public void testCount() {
         Criteria<Staff> criteria = Criteria.of(Staff.class).equals(Staff::getStaffName, SqlValue.of("name_2"));
         int count = standaloneDao.count(criteria);
@@ -56,7 +63,13 @@ public class ExampleTests {
 
     @Test
     public void testList() {
-        Criteria<Staff> criteria = Criteria.of(Staff.class).equals(Staff::getStaffName, SqlValue.of("name_2"));
+        Criteria<Staff> criteria = Criteria.of(Staff.class).
+                equals(Staff::getStaffName, SqlValue.of("name_2"))
+                .equals(Staff::getStaff_id, SqlValue.of(123L))
+                .OR(SubCriteria.of(Staff.class).equals(Staff::getStaff_id,SqlValue.of("fff")))
+                ;
+
+
         List<Staff> list = standaloneDao.list(criteria);
         list.forEach(System.out::println);
 
