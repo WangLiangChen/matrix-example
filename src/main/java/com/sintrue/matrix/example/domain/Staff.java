@@ -1,5 +1,7 @@
 package com.sintrue.matrix.example.domain;
 
+import wang.liangchen.matrix.framework.data.annotation.ColumnDelete;
+import wang.liangchen.matrix.framework.data.annotation.ColumnState;
 import wang.liangchen.matrix.framework.data.dao.entity.RootEntity;
 
 import javax.persistence.Column;
@@ -19,6 +21,10 @@ public class Staff extends RootEntity {
     @Column(name = "staff_gender")
     private String staff_sex;
     private LocalDate staff_birthday;
+
+    @ColumnDelete("deleted")
+    @ColumnState
+    private String state;
 
     public Long getStaff_id() {
         return staff_id;
@@ -50,6 +56,14 @@ public class Staff extends RootEntity {
 
     public void setStaff_birthday(LocalDate staff_birthday) {
         this.staff_birthday = staff_birthday;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     @Override

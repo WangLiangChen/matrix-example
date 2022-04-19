@@ -49,10 +49,33 @@ public class ExampleTests {
     }
 
     @Test
+    public void testDelete() {
+        Staff staff = new Staff();
+        staff.setStaff_id(1L);
+        standaloneDao.delete(staff);
+    }
+
+    @Test
+    public void testDeleteBatch() {
+        standaloneDao.delete(SubCriteria.of(Staff.class).equals(Staff::getStaff_id, SqlValue.of(1l)).equals(Staff::getStaffName, SqlValue.of("ffff")));
+    }
+
+    @Test
     public void testUpdate() {
         Staff staff = new Staff();
-        UpdateCriteria.of(staff).equals(Staff::getStaff_id, SqlValue.of("abc"));
+        staff.setStaffName("wanglc");
+        staff.addForceUpdateColumn(Staff::getStaffName,null);
+        staff.setStaff_id(1L);
+        standaloneDao.update(staff);
     }
+    @Test
+    public void testUpdateBatch() {
+        Staff staff = new Staff();
+        staff.setStaffName("wanglc");
+        UpdateCriteria<Staff> criteria = UpdateCriteria.of(staff).equals(Staff::getStaff_id, SqlValue.of(123L)).forceUpdate(Staff::getStaffName, null);
+        standaloneDao.update(criteria);
+    }
+
 
     @Test
     public void testCount() {
@@ -66,8 +89,7 @@ public class ExampleTests {
         Criteria<Staff> criteria = Criteria.of(Staff.class).
                 equals(Staff::getStaffName, SqlValue.of("name_2"))
                 .equals(Staff::getStaff_id, SqlValue.of(123L))
-                .OR(SubCriteria.of(Staff.class).equals(Staff::getStaff_id,SqlValue.of("fff")))
-                ;
+                .OR(SubCriteria.of(Staff.class).equals(Staff::getStaff_id, SqlValue.of("fff")));
 
 
         List<Staff> list = standaloneDao.list(criteria);
