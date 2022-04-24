@@ -1,4 +1,4 @@
-package com.sintrue.matrix.example.test.cache;
+package com.sintrue.matrix.example.test;
 
 import com.sintrue.matrix.example.account.domain.Account;
 import org.junit.jupiter.api.Test;

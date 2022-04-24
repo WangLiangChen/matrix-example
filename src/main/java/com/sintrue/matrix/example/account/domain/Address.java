@@ -1,7 +1,5 @@
 package com.sintrue.matrix.example.account.domain;
 
-import javax.persistence.Entity;
-
 /**
  * @author Liangchen.Wang 2022-04-24 14:09
  */
