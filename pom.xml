@@ -51,6 +51,12 @@
             <version>${version.matrix}</version>
         </dependency>
         <dependency>
+            <groupId>wang.liangchen.matrix</groupId>
+            <artifactId>matrix-framework-generator</artifactId>
+            <version>${version.matrix}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
