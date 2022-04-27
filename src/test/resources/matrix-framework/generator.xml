@@ -1,6 +1,6 @@
-<entities output="ablc" base-package="com.sintrue.matrix.entity">
+<entities output="" base-package="com.sintrue.matrix">
     <entity>
-        <table>matrix_authorization_subject</table>
+        <table-name>matrix_authorization_subject</table-name>
         <class-name>AuthorizationSubject</class-name>
         <sub-package>authorization</sub-package>
         <!-- 版本列名 -->

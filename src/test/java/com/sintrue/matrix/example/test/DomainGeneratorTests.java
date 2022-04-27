@@ -17,14 +17,7 @@ public class DomainGeneratorTests {
 
     @Test
     public void testMeta() throws Exception {
-
-
-
-        String tableName = "matrix_authorization_subject";
-        domainGenerator.doIt(tableName, "version", "state", "deleted");
-
-        String property = System.getProperty("user.dir");
-        System.out.println("--------" + property);
+        domainGenerator.build();
     }
 
 
