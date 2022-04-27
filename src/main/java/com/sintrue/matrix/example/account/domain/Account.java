@@ -1,6 +1,6 @@
 package com.sintrue.matrix.example.account.domain;
 
-import wang.liangchen.matrix.framework.data.annotation.ColumnDelete;
+import wang.liangchen.matrix.framework.data.annotation.ColumnMarkDelete;
 import wang.liangchen.matrix.framework.data.dao.entity.RootEntity;
 import wang.liangchen.matrix.framework.ddd.domain.AggregateRoot;
 
@@ -36,7 +36,7 @@ public class Account extends RootEntity {
     /**
      * 使用@ColumnDelete指定用于逻辑删除的列和值
      */
-    @ColumnDelete("deleted")
+    @ColumnMarkDelete("deleted")
     private String state;
     /**
      * 用于乐观锁的数据版本
