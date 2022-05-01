@@ -24,7 +24,7 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <version.matrix>1.0.0-SNAPSHOT</version.matrix>
-        <version.springboot>2.5.6</version.springboot>
+        <version.springboot>2.6.7</version.springboot>
     </properties>
 
     <dependencyManagement>
@@ -42,19 +42,8 @@
     <dependencies>
         <dependency>
             <groupId>wang.liangchen.matrix</groupId>
-            <artifactId>matrix-framework-data-spring-boot-starter</artifactId>
+            <artifactId>matrix-iam-authorization</artifactId>
             <version>${version.matrix}</version>
-        </dependency>
-        <dependency>
-            <groupId>wang.liangchen.matrix</groupId>
-            <artifactId>matrix-framework-ddd</artifactId>
-            <version>${version.matrix}</version>
-        </dependency>
-        <dependency>
-            <groupId>wang.liangchen.matrix</groupId>
-            <artifactId>matrix-framework-generator</artifactId>
-            <version>${version.matrix}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
