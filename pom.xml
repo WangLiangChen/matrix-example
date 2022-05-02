@@ -41,11 +41,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>wang.liangchen.matrix</groupId>
-            <artifactId>matrix-iam-authorization</artifactId>
-            <version>${version.matrix}</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
