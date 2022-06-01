@@ -25,6 +25,12 @@ public class CommonsTest {
 
 
     @Test
+    public void testNumberId(){
+        for (int i = 0; i < 1000; i++) {
+            System.out.println(NumbericUid.INSTANCE.nextId());
+        }
+    }
+    @Test
     public void testNumberIdThreads() throws InterruptedException {
         for (int i = 0; i < 50; i++) {
             int count = numberIdThreads();

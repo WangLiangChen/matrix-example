@@ -1,0 +1,13 @@
+<entities output="" base-package="com.sintrue.matrix.example" author="Liangchen.Wang">
+    <entity>
+        <table-name>matrix_authorization_subject</table-name>
+        <entity-name>AuthorizationSubject</entity-name>
+        <sub-package>authorization</sub-package>
+        <!-- 版本列名 -->
+        <column-version>version</column-version>
+        <!-- 标记删除列名和值 -->
+        <column-markdelete value="deleted">state</column-markdelete>
+        <!-- 列名是否转驼峰风格属性名 -->
+        <camel-case>true</camel-case>
+    </entity>
+</entities>
