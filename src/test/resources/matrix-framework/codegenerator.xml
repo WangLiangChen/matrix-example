@@ -1,7 +1,7 @@
 <entities output="" base-package="com.sintrue.matrix.example" author="Liangchen.Wang">
     <entity>
-        <table-name>matrix_authorization_subject</table-name>
-        <entity-name>AuthorizationSubject</entity-name>
+        <table-name>matrix_authorization_allowlist</table-name>
+        <entity-name>AuthorizationAllowlist</entity-name>
         <sub-package>authorization</sub-package>
         <!-- 版本列名 -->
         <column-version>version</column-version>
