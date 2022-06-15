@@ -1,12 +1,13 @@
-<!-- output 默认为当前项目src/main/java -->
+<!-- output 代码输出路径,默认为当前项目的src/main/java -->
 <entities output="" base-package="com.sintrue.matrix.example" author="Liangchen.Wang">
     <entity>
         <!-- 指定数据源 默认为primary -->
         <datasource></datasource>
         <table-name>matrix_authorization_allowlist</table-name>
         <entity-name>AuthorizationAllowlist</entity-name>
-        <sub-package>authorization</sub-package>
-        <!-- 版本列名 -->
+        <!-- 限界上下文包,只能一级 -->
+        <context-package>authorization</context-package>
+        <!-- 标识版本的列名 -->
         <column-version>version</column-version>
         <!-- 标记删除的列名和值 -->
         <column-markdelete value="deleted">state</column-markdelete>

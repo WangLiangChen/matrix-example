@@ -43,7 +43,7 @@
     <dependencies>
         <dependency>
             <groupId>wang.liangchen.matrix</groupId>
-            <artifactId>matrix-framework-core</artifactId>
+            <artifactId>matrix-framework-data-spring-boot-starter</artifactId>
             <version>${version.matrix}</version>
         </dependency>
         <dependency>
