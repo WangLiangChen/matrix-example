@@ -3,7 +3,6 @@ package com.sintrue.matrix.example.authorization.domain;
 import wang.liangchen.matrix.framework.commons.object.ObjectUtil;
 import wang.liangchen.matrix.framework.commons.type.ClassUtil;
 import wang.liangchen.matrix.framework.data.annotation.ColumnMarkDelete;
-import wang.liangchen.matrix.framework.data.annotation.IdStrategy;
 import wang.liangchen.matrix.framework.data.dao.entity.RootEntity;
 
 import javax.persistence.*;
@@ -16,7 +15,6 @@ import java.time.LocalDateTime;
 @Table(name = "matrix_authorization_allowlist")
 public class AuthorizationAllowlist extends RootEntity {
     @Id
-    @wang.liangchen.matrix.framework.data.annotation.Id(IdStrategy.AUTO_INCREMENT)
     @Column(name = "allowlist_id")
     private Long allowlistId;
 

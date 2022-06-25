@@ -28,6 +28,7 @@ public class AuthorizationAllowlistApplicationService {
 
     public void insert(AuthorizationAllowlistCommandRequest authorizationAllowlistCommandRequest) {
         AuthorizationAllowlist entity = AuthorizationAllowlist.valueOf(authorizationAllowlistCommandRequest);
+
         populateEntity(entity);
         authorizationAllowlistRepository.insert(entity);
     }

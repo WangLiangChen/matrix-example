@@ -4,6 +4,7 @@ import com.sintrue.matrix.example.authorization.message_pl.AuthorizationAllowlis
 import com.sintrue.matrix.example.authorization.northbound_ohs.local.AuthorizationAllowlistApplicationService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import wang.liangchen.matrix.framework.commons.uid.NanoIdUtil;
 import wang.liangchen.matrix.framework.data.annotation.EnableJdbc;
 
 import javax.inject.Inject;
@@ -46,6 +47,13 @@ public class AuthorizationTest {
             requestList.add(request);
         }
         service.insert(requestList);
+
+    }
+
+    public static void main(String[] args) {
+        String nanoId = NanoIdUtil.INSTANCE.randomNanoId();
+        System.out.println(nanoId);
+        // N54R4_mLn0-dq9AWTTsn0
     }
 
 
