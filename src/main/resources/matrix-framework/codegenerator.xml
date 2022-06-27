@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE entities>
 <!-- output 代码输出路径,默认为当前项目的src/main/java -->
 <entities output="" base-package="com.sintrue.matrix.example" author="Liangchen.Wang">
     <entity>
