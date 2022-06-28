@@ -23,6 +23,12 @@ public class DaoTest {
     private StandaloneDao standaloneDao;
 
     @Test
+    public void insert(){
+        AuthorizationAllowlist entity = AuthorizationAllowlist.newInstance();
+        standaloneDao.insert(entity);
+    }
+
+    @Test
     public void list() {
         List<AuthorizationAllowlist> list = standaloneDao.list(
                 // 构造条件对象
@@ -34,7 +40,28 @@ public class DaoTest {
                         .orderBy(AuthorizationAllowlist::getModifyDatetime, OrderByDirection.asc)
                         // 分页
                         .pageNumber(2).pageSize(10)
-
+                        // 结果去重.distinct()
+                        // 悲观锁.forUpdate()
+                        /**
+                         * 构造各种查询条件
+                         * _equals         _notEquals
+                         * _greaterThan    _greaterThanOrEquals
+                         * _lessThan       _lessThanOrEquals
+                         * _in             _notIn
+                         * _isNull         _isNotNull
+                         * _between        _notBetween
+                         * _startWith      _notStartWith
+                         * _endWith        _notEndWith
+                         * _contains       _notContains
+                         */
+                        // 列和值的条件
+                        ._equals(AuthorizationAllowlist::getAllowlistId, SqlValue.of(123L))
+                        // 列和列的条件
+                        ._notEquals(AuthorizationAllowlist::getAllowlistId, SqlValue.of(AuthorizationAllowlist::getAllowlistId))
+                        // 构造嵌套条件 支持OR AND
+                        ._OR(SubCriteria.of(AuthorizationAllowlist.class)._equals(AuthorizationAllowlist::getAllowlistId, SqlValue.of(123L))
+                                // 列和列的条件
+                                ._notEquals(AuthorizationAllowlist::getAllowlistId, SqlValue.of(AuthorizationAllowlist::getAllowlistId)))
 
         );
         list.forEach(System.out::println);
