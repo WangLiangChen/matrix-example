@@ -178,4 +178,24 @@ public class AuthorizationAllowlist extends RootEntity {
     public void setState(String state) {
         this.state = state;
     }
+
+    @Override
+    public String toString() {
+        return "AuthorizationAllowlist{" +
+                "allowlistId=" + allowlistId +
+                ", tenantCode='" + tenantCode + '\'' +
+                ", appCode='" + appCode + '\'' +
+                ", permissionUri='" + permissionUri + '\'' +
+                ", dataMode=" + dataMode +
+                ", version=" + version +
+                ", sort=" + sort +
+                ", owner='" + owner + '\'' +
+                ", creator='" + creator + '\'' +
+                ", createDatetime=" + createDatetime +
+                ", modifier='" + modifier + '\'' +
+                ", modifyDatetime=" + modifyDatetime +
+                ", summary='" + summary + '\'' +
+                ", state='" + state + '\'' +
+                '}';
+    }
 }

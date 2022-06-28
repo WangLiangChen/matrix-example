@@ -11,6 +11,7 @@ import wang.liangchen.matrix.framework.data.dao.criteria.SubCriteria;
 import wang.liangchen.matrix.framework.data.pagination.OrderByDirection;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * @author Liangchen.Wang 2022-06-24 17:12
@@ -23,40 +24,19 @@ public class DaoTest {
 
     @Test
     public void list() {
-        standaloneDao.list(
+        List<AuthorizationAllowlist> list = standaloneDao.list(
                 // 构造条件对象
                 Criteria.of(AuthorizationAllowlist.class)
                         // 指定返回的列
-                        .resultFields(AuthorizationAllowlist::getAllowlistId, AuthorizationAllowlist::getPermissionUri)
+                        .resultFields(AuthorizationAllowlist::getAllowlistId, AuthorizationAllowlist::getTenantCode)
                         // 排序
                         .orderBy(AuthorizationAllowlist::getCreateDatetime, OrderByDirection.desc)
+                        .orderBy(AuthorizationAllowlist::getModifyDatetime, OrderByDirection.asc)
                         // 分页
                         .pageNumber(2).pageSize(10)
-                        // 结果去重
-                        .distinct()
-                        // 悲观锁和乐观锁
-                        .forUpdate().version(111)
-                        /**
-                         * 构造各种查询条件
-                         * _equals         _notEquals
-                         * _greaterThan    _greaterThanOrEquals
-                         * _lessThan       _lessThanOrEquals
-                         * _in             _notIn
-                         * _isNull         _isNotNull
-                         * _between        _notBetween
-                         * _startWith      _notStartWith
-                         * _endWith        _notEndWith
-                         * _contains       _notContains
-                         */
-                        // 列和值的条件
-                        ._equals(AuthorizationAllowlist::getAllowlistId, SqlValue.of(123L))
-                        // 列和列的条件
-                        ._notEquals(AuthorizationAllowlist::getAllowlistId, SqlValue.of(AuthorizationAllowlist::getAllowlistId))
-                        // 构造嵌套条件 支持OR AND
-                        ._OR(SubCriteria.of(AuthorizationAllowlist.class)._equals(AuthorizationAllowlist::getAllowlistId, SqlValue.of(123L))
-                                // 列和列的条件
-                                ._notEquals(AuthorizationAllowlist::getAllowlistId, SqlValue.of(AuthorizationAllowlist::getAllowlistId)))
+
 
         );
+        list.forEach(System.out::println);
     }
 }
