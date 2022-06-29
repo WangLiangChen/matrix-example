@@ -7,18 +7,6 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <developers>
-        <developer>
-            <id>Liangchen.Wang</id>
-            <email>sintrue@hotmail.com</email>
-            <name>Liangchen.Wang</name>
-            <roles>
-                <role>developer</role>
-            </roles>
-            <timezone>+8</timezone>
-        </developer>
-    </developers>
-
     <properties>
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss(+8)</maven.build.timestamp.format>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -42,8 +30,17 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        <dependency>
             <groupId>wang.liangchen.matrix</groupId>
             <artifactId>matrix-framework-data-spring-boot-starter</artifactId>
+            <version>${version.matrix}</version>
+        </dependency>
+        <dependency>
+            <groupId>wang.liangchen.matrix</groupId>
+            <artifactId>matrix-framework-web-spring-boot-starter</artifactId>
             <version>${version.matrix}</version>
         </dependency>
         <dependency>
@@ -52,15 +49,9 @@
             <version>${version.matrix}</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>
-        <!--
-        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-        -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -87,24 +78,39 @@
             <resource>
                 <directory>src/main/java</directory>
                 <includes>
-                    <include>**/*.xml</include>
+                    <include>**/*.yaml</include>
+                    <include>**/*.yml</include>
                     <include>**/*.properties</include>
+                    <include>**/*.xml</include>
                     <include>**/META-INF/*</include>
                 </includes>
             </resource>
             <resource>
                 <directory>src/main/resources</directory>
                 <includes>
-                    <include>**/*.sql</include>
-                    <include>**/*.xml</include>
-                    <include>**/*.properties</include>
                     <include>**/*.yaml</include>
                     <include>**/*.yml</include>
-                    <include>**/*.json</include>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
                     <include>**/META-INF/*</include>
                 </includes>
                 <filtering>true</filtering>
             </resource>
         </resources>
     </build>
+    <profiles>
+        <profile>
+            <id>matrix-snapshot</id>
+            <repositories>
+                <repository>
+                    <id>matrix-snapshot</id>
+                    <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                    </snapshots>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
 </project>
