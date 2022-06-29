@@ -1,53 +1,68 @@
-package com.sintrue.matrix.example.authorization.domain;
+package com.sintrue.matrix.example.authorization_ddd.domain;
 
 import wang.liangchen.matrix.framework.commons.object.ObjectUtil;
 import wang.liangchen.matrix.framework.commons.type.ClassUtil;
 import wang.liangchen.matrix.framework.data.annotation.ColumnMarkDelete;
 import wang.liangchen.matrix.framework.data.dao.entity.RootEntity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Version;
 import java.time.LocalDateTime;
 
 /**
  * @author Liangchen.Wang
  */
-@Entity(name = "matrix_authorization_allowlist")
-@Table(name = "matrix_authorization_allowlist")
+//@Entity(name = "matrix_authorization_allowlist")
+//@Table(name = "matrix_authorization_allowlist")
 public class AuthorizationAllowlist extends RootEntity {
     @Id
     @Column(name = "allowlist_id")
     private Long allowlistId;
+
     @Column(name = "tenant_code")
     private String tenantCode;
+
     @Column(name = "app_code")
     private String appCode;
+
     @Column(name = "permission_uri")
     private String permissionUri;
+
     @Column(name = "data_mode")
     private Short dataMode;
+
     @Version
     @Column(name = "version")
     private Integer version;
+
     @Column(name = "sort")
     private Integer sort;
+
     @Column(name = "owner")
     private String owner;
+
     @Column(name = "creator")
     private String creator;
+
     @Column(name = "create_datetime")
     private LocalDateTime createDatetime;
+
     @Column(name = "modifier")
     private String modifier;
+
     @Column(name = "modify_datetime")
     private LocalDateTime modifyDatetime;
+
     @Column(name = "summary")
     private String summary;
+
     @ColumnMarkDelete("deleted")
     @Column(name = "state")
     private String state;
 
-    public static AuthorizationAllowlist valueOf(Object source) {
-        return ObjectUtil.INSTANCE.copyProperties(source, AuthorizationAllowlist.class);
+    public static AuthorizationAllowlist valueOf(Object object) {
+        return ObjectUtil.INSTANCE.copyProperties(object, AuthorizationAllowlist.class);
     }
 
     public static AuthorizationAllowlist newInstance() {
@@ -171,21 +186,7 @@ public class AuthorizationAllowlist extends RootEntity {
         StringBuilder builder = new StringBuilder();
         builder.append("AuthorizationAllowlist{");
         builder.append("allowlistId = ").append(allowlistId).append(",");
-        builder.append("tenantCode = ").append(tenantCode).append(",");
-        builder.append("appCode = ").append(appCode).append(",");
-        builder.append("permissionUri = ").append(permissionUri).append(",");
-        builder.append("dataMode = ").append(dataMode).append(",");
-        builder.append("version = ").append(version).append(",");
-        builder.append("sort = ").append(sort).append(",");
-        builder.append("owner = ").append(owner).append(",");
-        builder.append("creator = ").append(creator).append(",");
-        builder.append("createDatetime = ").append(createDatetime).append(",");
-        builder.append("modifier = ").append(modifier).append(",");
-        builder.append("modifyDatetime = ").append(modifyDatetime).append(",");
-        builder.append("summary = ").append(summary).append(",");
-        builder.append("state = ").append(state).append(",");
-        builder.deleteCharAt(builder.length() - 1);
         builder.append("}");
-        return builder.toString();
+        return builder.deleteCharAt(builder.length()).toString();
     }
 }

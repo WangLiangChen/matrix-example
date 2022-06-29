@@ -16,7 +16,7 @@ public class CodeGenerator {
     @Inject
     private DomainGenerator domainGenerator;
     @Test
-    public void doIt() {
+    public void buildDomain() {
        domainGenerator.build();
     }
 }

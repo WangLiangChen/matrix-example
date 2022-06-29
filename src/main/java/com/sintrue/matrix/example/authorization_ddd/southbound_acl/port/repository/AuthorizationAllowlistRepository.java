@@ -1,4 +1,4 @@
-package com.sintrue.matrix.example.authorization.southbound_acl.port.repository;
+package com.sintrue.matrix.example.authorization_ddd.southbound_acl.port.repository;
 
 import wang.liangchen.matrix.framework.data.dao.IDao;
 

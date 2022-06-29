@@ -1,4 +1,4 @@
-package com.sintrue.matrix.example.authorization.message_pl;
+package com.sintrue.matrix.example.authorization_ddd.message_pl;
 
 import wang.liangchen.matrix.framework.commons.type.ClassUtil;
 

@@ -1,8 +1,8 @@
-package com.sintrue.matrix.example.authorization.northbound_ohs.local;
+package com.sintrue.matrix.example.authorization_ddd.northbound_ohs.local;
 
-import com.sintrue.matrix.example.authorization.domain.AuthorizationAllowlist;
-import com.sintrue.matrix.example.authorization.message_pl.AuthorizationAllowlistCommandRequest;
-import com.sintrue.matrix.example.authorization.southbound_acl.port.repository.AuthorizationAllowlistRepository;
+import com.sintrue.matrix.example.authorization_ddd.domain.AuthorizationAllowlist;
+import com.sintrue.matrix.example.authorization_ddd.message_pl.AuthorizationAllowlistCommandRequest;
+import com.sintrue.matrix.example.authorization_ddd.southbound_acl.port.repository.AuthorizationAllowlistRepository;
 import org.springframework.stereotype.Service;
 import wang.liangchen.matrix.framework.commons.object.ObjectUtil;
 import wang.liangchen.matrix.framework.commons.string.StringUtil;
