@@ -107,10 +107,4 @@
             </resource>
         </resources>
     </build>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>huawei</id>
-            <url>https://mirrors.huaweicloud.com/repository/maven/</url>
-        </pluginRepository>
-    </pluginRepositories>
 </project>
