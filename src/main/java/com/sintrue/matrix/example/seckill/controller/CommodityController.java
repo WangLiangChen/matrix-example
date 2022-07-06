@@ -1,12 +1,6 @@
 package com.sintrue.matrix.example.seckill.controller;
 
 import com.sintrue.matrix.example.seckill.domain.Commodity;
-import org.junit.jupiter.api.Test;
-import org.springframework.aop.framework.AopProxyUtils;
-import org.springframework.aop.support.AopUtils;
-import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -142,7 +136,7 @@ public class CommodityController implements AopProxyProcessor.AopProxyAware {
     @GetMapping("pagination")
     @DataSourceAssign("primary")
     public FormattedResponse pagination() {
-        Criteria criteria = Criteria.of(Commodity.class)
+        Criteria<Commodity> criteria = Criteria.of(Commodity.class)
                 // 指定返回的列
                 .resultFields(Commodity::getCommodityId, Commodity::getCommodityName)
                 // 排序
@@ -170,7 +164,7 @@ public class CommodityController implements AopProxyProcessor.AopProxyAware {
         // 构造嵌套条件 支持OR AND
         //._OR(SubCriteria.of(AuthorizationAllowlist.class)._equals(AuthorizationAllowlist::getAllowlistId, SqlValue.of(123L))
         //._notEquals(AuthorizationAllowlist::getAllowlistId, SqlValue.of(AuthorizationAllowlist::getAllowlistId)))
-        PaginationResult pagination = standaloneDao.pagination(criteria);
+        PaginationResult<Commodity> pagination = standaloneDao.pagination(criteria);
         logger.debug("pagination: {}", pagination);
         // 嵌套数据源切换
         self.nested();
@@ -190,7 +184,9 @@ public class CommodityController implements AopProxyProcessor.AopProxyAware {
 
     private Commodity createEntity() {
         Commodity entity = Commodity.newInstance();
+        // Id 生成
         entity.setCommodityId(NumbericUid.INSTANCE.nextId());
+
         entity.setCommodityName(MultiDataSourceContext.INSTANCE.getDialect().getDataSourceType() + "商品" + RandomUtil.INSTANCE.random(1000, 9999));
         entity.setCommodityPrice(RandomUtil.INSTANCE.random(1000, 9999));
         entity.setCommodityStock(RandomUtil.INSTANCE.random(1, 5));

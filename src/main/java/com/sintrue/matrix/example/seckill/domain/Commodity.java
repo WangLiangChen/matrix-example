@@ -3,6 +3,7 @@ package com.sintrue.matrix.example.seckill.domain;
 import wang.liangchen.matrix.framework.commons.object.ObjectUtil;
 import wang.liangchen.matrix.framework.commons.type.ClassUtil;
 import wang.liangchen.matrix.framework.data.annotation.ColumnMarkDelete;
+import wang.liangchen.matrix.framework.data.annotation.IdStrategy;
 import wang.liangchen.matrix.framework.data.dao.entity.RootEntity;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 @Table(name = "commodity")
 public class Commodity extends RootEntity {
     @Id
+    @wang.liangchen.matrix.framework.data.annotation.Id(IdStrategy.AUTO_INCREMENT)
     @Column(name = "commodity_id")
     private Long commodityId;
     @Column(name = "commodity_name")
