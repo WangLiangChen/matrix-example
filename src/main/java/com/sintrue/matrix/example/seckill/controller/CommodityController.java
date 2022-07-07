@@ -10,7 +10,6 @@ import wang.liangchen.matrix.framework.commons.logging.MatrixLogger;
 import wang.liangchen.matrix.framework.commons.logging.MatrixLoggerFactory;
 import wang.liangchen.matrix.framework.commons.random.RandomUtil;
 import wang.liangchen.matrix.framework.commons.uid.NumbericUid;
-import wang.liangchen.matrix.framework.data.annotation.DataSourceAssign;
 import wang.liangchen.matrix.framework.data.dao.StandaloneDao;
 import wang.liangchen.matrix.framework.data.dao.criteria.Criteria;
 import wang.liangchen.matrix.framework.data.dao.criteria.SqlValue;
@@ -35,7 +34,6 @@ import java.util.List;
 public class CommodityController implements AopProxyProcessor.AopProxyAware {
     private static final MatrixLogger logger = MatrixLoggerFactory.getLogger(CommodityController.class);
     private final StandaloneDao standaloneDao;
-    private CommodityController self;
 
 
     @Inject
@@ -134,7 +132,7 @@ public class CommodityController implements AopProxyProcessor.AopProxyAware {
     }
 
     @GetMapping("pagination")
-    @DataSourceAssign("primary")
+    // @DataSourceAssign("primary")
     public FormattedResponse pagination() {
         Criteria<Commodity> criteria = Criteria.of(Commodity.class)
                 // 指定返回的列
@@ -167,14 +165,7 @@ public class CommodityController implements AopProxyProcessor.AopProxyAware {
         PaginationResult<Commodity> pagination = standaloneDao.pagination(criteria);
         logger.debug("pagination: {}", pagination);
         // 嵌套数据源切换
-        self.nested();
         return FormattedResponse.success().payload(pagination);
-    }
-
-    @DataSourceAssign("one")
-    public void nested() {
-        List<Commodity> list = standaloneDao.list(Criteria.of(Commodity.class).pageNumber(1).pageSize(2));
-        logger.debug("nested list: {}", list);
     }
 
     @Override
