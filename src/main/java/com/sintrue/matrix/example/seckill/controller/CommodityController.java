@@ -18,7 +18,6 @@ import wang.liangchen.matrix.framework.data.dao.criteria.UpdateCriteria;
 import wang.liangchen.matrix.framework.data.datasource.MultiDataSourceContext;
 import wang.liangchen.matrix.framework.data.pagination.OrderByDirection;
 import wang.liangchen.matrix.framework.data.pagination.PaginationResult;
-import wang.liangchen.matrix.framework.springboot.processor.AopProxyProcessor;
 import wang.liangchen.matrix.framework.web.response.FormattedResponse;
 
 import javax.inject.Inject;
@@ -31,7 +30,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/")
-public class CommodityController implements AopProxyProcessor.AopProxyAware {
+public class CommodityController  {
     private static final MatrixLogger logger = MatrixLoggerFactory.getLogger(CommodityController.class);
     private final StandaloneDao standaloneDao;
 
@@ -79,6 +78,7 @@ public class CommodityController implements AopProxyProcessor.AopProxyAware {
             add(createEntity());
         }};
         int rows = standaloneDao.insert(entities);
+
         logger.debug("insertBulk:{},entities:{}", rows, entities);
         return FormattedResponse.success();
     }
@@ -166,11 +166,6 @@ public class CommodityController implements AopProxyProcessor.AopProxyAware {
         logger.debug("pagination: {}", pagination);
         // 嵌套数据源切换
         return FormattedResponse.success().payload(pagination);
-    }
-
-    @Override
-    public void setAopProxy(Object proxy) {
-        this.self = (CommodityController) proxy;
     }
 
     private Commodity createEntity() {
