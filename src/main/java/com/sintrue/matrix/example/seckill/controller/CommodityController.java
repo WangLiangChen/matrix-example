@@ -30,7 +30,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/")
-public class CommodityController  {
+public class CommodityController {
     private static final MatrixLogger logger = MatrixLoggerFactory.getLogger(CommodityController.class);
     private final StandaloneDao standaloneDao;
 
@@ -38,6 +38,15 @@ public class CommodityController  {
     @Inject
     public CommodityController(StandaloneDao standaloneDao) {
         this.standaloneDao = standaloneDao;
+    }
+
+    @GetMapping("voidSuccess")
+    public void voidSuccess() {
+    }
+
+    @GetMapping("voidException")
+    public void voidException() {
+        throw new MatrixErrorException("I am Void Excepiton");
     }
 
     @GetMapping("success")
