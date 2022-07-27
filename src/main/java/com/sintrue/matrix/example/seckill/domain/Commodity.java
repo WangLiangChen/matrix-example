@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
 /**
  * @author Liangchen.Wang
  */
-@Entity(name = "commodity")
-@Table(name = "commodity")
+//@Entity(name = "commodity")
+//@Table(name = "commodity")
 public class Commodity extends RootEntity {
     @Id
     @wang.liangchen.matrix.framework.data.annotation.Id(IdStrategy.AUTO_INCREMENT)

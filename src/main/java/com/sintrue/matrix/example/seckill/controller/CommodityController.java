@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * @author Liangchen.Wang 2022-06-29 22:47
  */
-@RestController
+// @RestController
 @RequestMapping("/")
 public class CommodityController {
     private static final MatrixLogger logger = MatrixLoggerFactory.getLogger(CommodityController.class);

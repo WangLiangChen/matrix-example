@@ -12,7 +12,6 @@ import java.net.URISyntaxException;
  * @author Liangchen.Wang
  */
 @SpringBootApplication
-@EnableJdbc
 @EnableWeb(webType = EnableWeb.WebType.WEBMVC)
 public class ExampleInitializer {
     public static void main(String[] args) throws IOException, URISyntaxException {

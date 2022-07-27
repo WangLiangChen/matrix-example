@@ -1,0 +1,7 @@
+spring:
+  redis:
+    host: 192.168.8.88
+logging:
+  level:
+    com.sintrue: debug
+

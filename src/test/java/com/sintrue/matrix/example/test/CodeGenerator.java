@@ -9,9 +9,9 @@ import javax.inject.Inject;
 /**
  * @author Liangchen.Wang 2022-06-29 22:17
  */
-@SpringBootTest
+//@SpringBootTest
 public class CodeGenerator {
-    @Inject
+    // @Inject
     private DomainGenerator domainGenerator;
 
     @Test
