@@ -19,8 +19,6 @@ public class CacheTest {
 
     @Test
     public void testInit() throws InterruptedException {
-        cacheableClass.findCacheObject("zhangsan");
-        TimeUnit.SECONDS.sleep(60);
-        cacheableClass.findCacheObject("lisi");
+        cacheableClass.findCacheObject();
     }
 }

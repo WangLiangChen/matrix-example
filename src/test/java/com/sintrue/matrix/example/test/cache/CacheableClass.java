@@ -11,7 +11,7 @@ import java.util.Random;
 @Component
 @Cacheable(value = "CacheObject", ttlMs = 1000 * 60 * 5)
 public class CacheableClass {
-    public CacheObject findCacheObject(String name) {
+    public CacheObject findCacheObject() {
         System.out.println("--------------unhit--------------------------");
         CacheObject cacheObject = new CacheObject();
         cacheObject.setObjectId(new Random().nextLong());
