@@ -3,10 +3,10 @@
     <entity>
         <!-- 指定数据源 默认为primary -->
         <datasource></datasource>
-        <table-name>commodity</table-name>
-        <entity-name>Commodity</entity-name>
+        <table-name>staff</table-name>
+        <entity-name>Staff</entity-name>
         <!-- 限界上下文包,只能一级 -->
-        <context-package>seckill</context-package>
+        <context-package>staff</context-package>
         <!-- 标识版本的列名 -->
         <column-version></column-version>
         <!-- 标记删除的列名和值 -->

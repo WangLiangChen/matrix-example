@@ -13,6 +13,7 @@ import java.net.URISyntaxException;
  */
 @SpringBootApplication
 @EnableWeb(webType = EnableWeb.WebType.WEBMVC)
+//@EnableJdbc
 public class ExampleInitializer {
     public static void main(String[] args) throws IOException, URISyntaxException {
         SpringApplication springApplication = new SpringApplication(ExampleInitializer.class);

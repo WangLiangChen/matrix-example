@@ -40,12 +40,12 @@
         </dependency>
         <dependency>
             <groupId>wang.liangchen.matrix</groupId>
-            <artifactId>matrix-framework-web-spring-boot-starter</artifactId>
+            <artifactId>matrix-framework-generator</artifactId>
             <version>${version.matrix}</version>
         </dependency>
         <dependency>
             <groupId>wang.liangchen.matrix</groupId>
-            <artifactId>matrix-framework-generator</artifactId>
+            <artifactId>matrix-framework-web-spring-boot-starter</artifactId>
             <version>${version.matrix}</version>
         </dependency>
         <dependency>
@@ -88,7 +88,7 @@
                     <include>**/*.properties</include>
                     <include>**/*.xml</include>
                     <include>**/*.sql</include>
-                    <include>**/META-INF/*</include>
+                    <include>**/META-INF/**</include>
                 </includes>
                 <filtering>true</filtering>
             </resource>
@@ -100,7 +100,7 @@
                     <include>**/*.properties</include>
                     <include>**/*.xml</include>
                     <include>**/*.sql</include>
-                    <include>**/META-INF/*</include>
+                    <include>**/META-INF/**</include>
                 </includes>
                 <filtering>true</filtering>
             </resource>
