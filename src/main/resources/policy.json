@@ -1,0 +1,16 @@
+{
+  "relation": "AND",
+  "children": [
+    {"relation": "AND","children": [{""}]},
+    {"relation": "OR"}
+  ]
+
+}
+
+
+
+relation=OR|AND
+
+field
+condition
+value

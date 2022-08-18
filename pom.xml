@@ -107,6 +107,7 @@
         </resources>
     </build>
     <repositories>
+        <!-- snapshots版本,中央仓库不同步,需要指定如下仓库 -->
         <repository>
             <id>matrix-snapshot</id>
             <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
