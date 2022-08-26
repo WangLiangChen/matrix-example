@@ -54,6 +54,11 @@
             <version>${version.matrix}</version>
         </dependency>
         <dependency>
+            <groupId>wang.liangchen.matrix</groupId>
+            <artifactId>matrix-framework-lock</artifactId>
+            <version>${version.matrix}</version>
+        </dependency>
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
