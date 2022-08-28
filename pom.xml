@@ -55,7 +55,7 @@
         </dependency>
         <dependency>
             <groupId>wang.liangchen.matrix</groupId>
-            <artifactId>matrix-framework-lock</artifactId>
+            <artifactId>matrix-framework-lock-spring-boot-starter</artifactId>
             <version>${version.matrix}</version>
         </dependency>
         <dependency>
