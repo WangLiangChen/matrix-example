@@ -1,28 +1,18 @@
-package com.sintrue.matrix.example;
+package com.sintrue.matrix.example.service;
 
-import wang.liangchen.matrix.framework.data.annotation.ColumnJson;
-import wang.liangchen.matrix.framework.data.annotation.IdStrategy;
-import wang.liangchen.matrix.framework.data.dao.entity.RootEntity;
+import com.sintrue.matrix.example.State;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
- * @author Liangchen.Wang 2022-08-31 22:52
+ * @author Liangchen.Wang 2022-09-02 14:49
  */
-@Entity(name = "staff")
-@Table(name = "staff")
-public class Staff extends RootEntity {
-    @Id
-    @IdStrategy(IdStrategy.Strategy.MatrixFlake)
+public class StaffResponse {
     private Long staffId;
     private String staffText;
     private LocalDateTime createDatetime;
     private LocalDate createDate;
-    @ColumnJson
     private State state;
 
     public Long getStaffId() {

@@ -1,7 +1,7 @@
 package com.sintrue.matrix.example.test.cache;
 
-import com.sintrue.matrix.example.Staff;
 import com.sintrue.matrix.example.State;
+import com.sintrue.matrix.example.domain.Staff;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import wang.liangchen.matrix.framework.data.dao.StandaloneDao;
