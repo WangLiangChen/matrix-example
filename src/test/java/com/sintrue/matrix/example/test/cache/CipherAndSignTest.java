@@ -33,11 +33,11 @@ public class CipherAndSignTest {
         for (SignatureAlgorithm signatureAlgorithm : SignatureAlgorithm.values()) {
             System.out.println("签名算法:" + signatureAlgorithm);
             KeyPairString keyPairString = SecretKeyUtil.INSTANCE.keyPair(signatureAlgorithm.getKeyPairAlgorithm());
-            String privateKey = keyPairString.getPrivateKey();
+            String privateKey = keyPairString.getPrivateKeyString();
             System.out.println("privateKey:" + privateKey);
             String sign = SignatureUtil.INSTANCE.sign(signatureAlgorithm, privateKey, data);
             System.out.println("sign:" + sign);
-            String publicKey = keyPairString.getPublicKey();
+            String publicKey = keyPairString.getPublicKeyString();
             System.out.println("publicKey:" + publicKey);
             boolean verify = SignatureUtil.INSTANCE.verify(signatureAlgorithm, publicKey, data, sign);
             System.out.println("verify:" + verify);
@@ -83,11 +83,11 @@ public class CipherAndSignTest {
         for (CipherAsymmetricAlgorithm algorithm : CipherAsymmetricAlgorithm.values()) {
             System.out.println("签名算法:" + algorithm);
             KeyPairString keyPairString = SecretKeyUtil.INSTANCE.keyPair(algorithm.getKeyPairAlgorithm());
-            String publicKey = keyPairString.getPublicKey();
+            String publicKey = keyPairString.getPublicKeyString();
             System.out.println("publicKey:" + publicKey);
             String encrypt = CipherUtil.INSTANCE.encrypt(algorithm, publicKey, data);
             System.out.println("encrypt:" + encrypt);
-            String privateKey = keyPairString.getPrivateKey();
+            String privateKey = keyPairString.getPrivateKeyString();
             System.out.println("privateKey:" + privateKey);
             String decrypt = CipherUtil.INSTANCE.decrypt(algorithm, privateKey, encrypt);
             System.out.println("decrypt:" + decrypt);
