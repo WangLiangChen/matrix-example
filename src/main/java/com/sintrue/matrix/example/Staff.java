@@ -7,10 +7,8 @@ import wang.liangchen.matrix.framework.data.dao.entity.RootEntity;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * @author Liangchen.Wang 2022-08-31 22:52
