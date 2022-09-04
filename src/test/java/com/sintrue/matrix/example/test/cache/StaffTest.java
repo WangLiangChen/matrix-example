@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import wang.liangchen.matrix.framework.data.dao.StandaloneDao;
 import wang.liangchen.matrix.framework.data.dao.criteria.Criteria;
-import wang.liangchen.matrix.framework.data.dao.criteria.SqlValue;
 
 import javax.inject.Inject;
 import java.time.LocalDate;
@@ -35,7 +34,7 @@ public class StaffTest {
 
     @Test
     public void testSelect() {
-        Staff select = standaloneDao.select(Criteria.of(Staff.class)._equals(Staff::getStaffId, SqlValue.of(15L)));
+        Staff select = standaloneDao.select(Criteria.of(Staff.class)._equals(Staff::getStaffId, 15L));
         System.out.println(select.getStaffId());
     }
 }

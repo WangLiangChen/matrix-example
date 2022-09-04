@@ -4,7 +4,6 @@ import com.sintrue.matrix.example.service.StaffRequest;
 import org.springframework.stereotype.Service;
 import wang.liangchen.matrix.framework.data.dao.StandaloneDao;
 import wang.liangchen.matrix.framework.data.dao.criteria.Criteria;
-import wang.liangchen.matrix.framework.data.dao.criteria.SqlValue;
 import wang.liangchen.matrix.framework.data.pagination.PaginationResult;
 import wang.liangchen.matrix.framework.ddd.domain.DomainService;
 
@@ -42,7 +41,7 @@ public class ExampleManager {
 
     public Staff find(Long staffId) {
         Criteria<Staff> criteria = Criteria.of(Staff.class)
-                ._equals(Staff::getStaffId, SqlValue.of(staffId));
+                ._equals(Staff::getStaffId, staffId);
         return standaloneDao.select(criteria);
     }
 
