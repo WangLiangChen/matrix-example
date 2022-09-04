@@ -13,7 +13,7 @@ public class CipherAndSignTest {
         String key = "matrix";
         String data = "matrix_matrix";
         for (HmacAligorithm aligorithm : HmacAligorithm.values()) {
-            String hmac = DigestUtil.INSTANCE.hmac(aligorithm, key, data);
+            String hmac = DigestSignUtil.INSTANCE.hmac(aligorithm, key, data);
             System.out.println(aligorithm + ":" + hmac);
         }
     }
@@ -22,7 +22,7 @@ public class CipherAndSignTest {
     public void testDigest() {
         String data = "matrix_matrix";
         for (DigestAlgorithm aligorithm : DigestAlgorithm.values()) {
-            String hmac = DigestUtil.INSTANCE.digest(aligorithm, data);
+            String hmac = DigestSignUtil.INSTANCE.digest(aligorithm, data);
             System.out.println(aligorithm + ":" + hmac);
         }
     }
@@ -32,14 +32,16 @@ public class CipherAndSignTest {
         String data = "Hello,I am matrix";
         for (SignatureAlgorithm signatureAlgorithm : SignatureAlgorithm.values()) {
             System.out.println("签名算法:" + signatureAlgorithm);
+            // 生成密钥对
             KeyPairString keyPairString = SecretKeyUtil.INSTANCE.keyPair(signatureAlgorithm.getKeyPairAlgorithm());
             String privateKey = keyPairString.getPrivateKeyString();
             System.out.println("privateKey:" + privateKey);
-            String sign = SignatureUtil.INSTANCE.sign(signatureAlgorithm, privateKey, data);
+            String sign = DigestSignUtil.INSTANCE.sign(signatureAlgorithm, privateKey, data);
             System.out.println("sign:" + sign);
+
             String publicKey = keyPairString.getPublicKeyString();
             System.out.println("publicKey:" + publicKey);
-            boolean verify = SignatureUtil.INSTANCE.verify(signatureAlgorithm, publicKey, data, sign);
+            boolean verify = DigestSignUtil.INSTANCE.verify(signatureAlgorithm, publicKey, sign,data);
             System.out.println("verify:" + verify);
         }
     }
@@ -92,6 +94,35 @@ public class CipherAndSignTest {
             String decrypt = CipherUtil.INSTANCE.decrypt(algorithm, privateKey, encrypt);
             System.out.println("decrypt:" + decrypt);
         }
+    }
+
+    @Test
+    public void testBuildSign() {
+        String uri = "http://api.open.com/staff/111222";
+        String body = "{\"name\":\"wanglc\"}";
+
+        String hmacKey = "jkfdljsakfdjkjgd";
+
+        Signature signature = Signature.instance4Sign(uri, body);
+        System.out.println("-payload:");
+        System.out.println(signature.getPayload());
+
+        String signString = signature.sign(HmacAligorithm.HmacSHA256, hmacKey);
+        System.out.println("-signString:");
+        System.out.println(signString);
+
+        System.out.println("-algorithm:");
+        System.out.println(signature.getAlgorithm());
+        System.out.println("-signature:");
+        System.out.println(signature.getSignature());
+
+        System.out.println("===================verify=============");
+        signature = Signature.instance4Verify(uri, body, signString);
+        System.out.println("-payload:");
+        System.out.println(signature.getPayload());
+
+        System.out.println("-verify:");
+        System.out.println(signature.verify(hmacKey));
     }
 
 }

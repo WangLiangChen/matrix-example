@@ -16,14 +16,16 @@ public class JwtTest {
     public void jwtHmackTest() {
         String secretKey = JwtUtil.INSTANCE.generateKey(64);
         System.out.println("secretKey:" + secretKey);
+
         JWTClaimsSet claimsSet = new JWTClaimsSet.Builder()
                 .subject("alice")
                 .issuer("https://c2id.com")
                 .expirationTime(new Date(new Date().getTime() + 60 * 1000))
                 .build();
-        String sign = JwtUtil.INSTANCE.sign(secretKey, claimsSet);
-        System.out.println("sign:" + sign);
-        JWTClaimsSet verify = JwtUtil.INSTANCE.verify(secretKey, sign);
+
+        String jwt = JwtUtil.INSTANCE.sign(secretKey, claimsSet);
+        System.out.println("jwt:" + jwt);
+        JWTClaimsSet verify = JwtUtil.INSTANCE.verify(secretKey, jwt);
         System.out.println("verify:" + verify);
     }
 
