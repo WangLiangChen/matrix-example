@@ -34,7 +34,11 @@ public class StaffTest {
 
     @Test
     public void testSelect() {
-        Staff select = standaloneDao.select(Criteria.of(Staff.class)._equals(Staff::getStaffId, 15L));
-        System.out.println(select.getStaffId());
+        Staff staff = new Staff();
+        staff.setStaffId(438292558515316842L);
+        Staff select = standaloneDao.select(Criteria.of(staff)
+                ._equals(Staff::getStaffId)
+                ._contains(Staff::getStaffText, "staffx"));
+        System.out.println();
     }
 }
