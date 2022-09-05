@@ -103,26 +103,25 @@ public class CipherAndSignTest {
 
         String hmacKey = "jkfdljsakfdjkjgd";
 
-        Signature signature = Signature.instance4Sign(uri, body);
+        SignatureClaim signatureClaim = SignatureClaim.instance4Sign(uri, body);
         System.out.println("-payload:");
-        System.out.println(signature.getPayload());
+        System.out.println(signatureClaim.getPayload());
 
-        String signString = signature.sign(HmacAligorithm.HmacSHA256, hmacKey);
+        String signString = signatureClaim.sign(HmacAligorithm.HmacSHA256, hmacKey);
         System.out.println("-signString:");
         System.out.println(signString);
 
-        System.out.println("-algorithm:");
-        System.out.println(signature.getAlgorithm());
-        System.out.println("-signature:");
-        System.out.println(signature.getSignature());
-
         System.out.println("===================verify=============");
-        signature = Signature.instance4Verify(uri, body, signString);
+        signatureClaim = SignatureClaim.instance4Verify(uri, body, signString);
         System.out.println("-payload:");
-        System.out.println(signature.getPayload());
+        System.out.println(signatureClaim.getPayload());
+        System.out.println("-algorithm:");
+        System.out.println(signatureClaim.getAlgorithm());
+        System.out.println("-signature:");
+        System.out.println(signatureClaim.getSignature());
 
         System.out.println("-verify:");
-        System.out.println(signature.verify(hmacKey));
+        System.out.println(signatureClaim.verify(hmacKey));
     }
 
 }
