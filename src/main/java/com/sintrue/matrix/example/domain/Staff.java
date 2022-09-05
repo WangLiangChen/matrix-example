@@ -1,6 +1,5 @@
 package com.sintrue.matrix.example.domain;
 
-import com.sintrue.matrix.example.State;
 import wang.liangchen.matrix.framework.commons.object.ObjectUtil;
 import wang.liangchen.matrix.framework.commons.type.ClassUtil;
 import wang.liangchen.matrix.framework.data.annotation.ColumnJson;
@@ -25,8 +24,9 @@ public class Staff extends RootEntity {
     private String staffText;
     private LocalDateTime createDatetime;
     private LocalDate createDate;
+    private StateEnum state;
     @ColumnJson
-    private State state;
+    private Settings settings;
 
     public static Staff valueOf(Object source) {
         return ObjectUtil.INSTANCE.copyProperties(source, Staff.class);
@@ -68,11 +68,19 @@ public class Staff extends RootEntity {
         this.createDate = createDate;
     }
 
-    public State getState() {
+    public StateEnum getState() {
         return state;
     }
 
-    public void setState(State state) {
+    public void setState(StateEnum state) {
         this.state = state;
+    }
+
+    public Settings getSettings() {
+        return settings;
+    }
+
+    public void setSettings(Settings settings) {
+        this.settings = settings;
     }
 }
