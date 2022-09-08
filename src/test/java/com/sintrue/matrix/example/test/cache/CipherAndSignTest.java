@@ -1,6 +1,7 @@
 package com.sintrue.matrix.example.test.cache;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.util.AntPathMatcher;
 import wang.liangchen.matrix.framework.commons.encryption.*;
 import wang.liangchen.matrix.framework.commons.encryption.enums.*;
 
@@ -122,6 +123,12 @@ public class CipherAndSignTest {
 
         System.out.println("-verify:");
         System.out.println(signatureClaim.verify(hmacKey));
+    }
+    @Test
+    public void testAntPath(){
+        AntPathMatcher antPathMatcher = new AntPathMatcher();
+        boolean match = antPathMatcher.match("/tenant/{id}", "/tenant/88888");
+        System.out.println(match);
     }
 
 }

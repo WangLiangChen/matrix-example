@@ -13,7 +13,7 @@ import java.util.Date;
 public class JwtTest {
 
     @Test
-    public void jwtHmackTest() {
+    public void jwtHmacTest() {
         String secretKey = JwtUtil.INSTANCE.generateKey(64);
         System.out.println("secretKey:" + secretKey);
 

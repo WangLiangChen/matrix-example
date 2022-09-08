@@ -7,13 +7,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import wang.liangchen.matrix.framework.data.dao.StandaloneDao;
 import wang.liangchen.matrix.framework.data.dao.criteria.Criteria;
+import wang.liangchen.matrix.framework.data.dao.criteria.UpdateCriteria;
 import wang.liangchen.matrix.framework.data.pagination.OrderByDirection;
 
 import javax.inject.Inject;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Liangchen.Wang 2022-08-31 22:55
@@ -57,6 +57,52 @@ public class StandaloneDaoTest {
     }
 
     @Test
+    public void testDeleteById() {
+        //@ColumnMarkDelete("DELETED") 逻辑删除
+        Staff staff = new Staff();
+        staff.setStaffId(100L);
+        int rows = standaloneDao.delete(staff);
+        System.out.println("deleted rows:" + rows);
+    }
+
+    @Test
+    public void testDelete() {
+        //@ColumnMarkDelete("DELETED") 逻辑删除
+        Criteria<Staff> criteria = Criteria.of(Staff.class)._startWith(Staff::getStaffDesc, "wanglc");
+        int rows = standaloneDao.delete(criteria);
+        System.out.println("deleted rows:" + rows);
+    }
+
+    @Test
+    public void testUpdateById() {
+        Staff staff = new Staff();
+        staff.setStaffId(100L);
+        // 增加强制更新的列
+        staff.addForceUpdateColumn("create_datetime", null);
+        // 增加强制更新的属性
+        staff.addForceUpdateField(Staff::getStaffDesc, null);
+        int rows = standaloneDao.update(staff);
+        System.out.println("deleted rows:" + rows);
+    }
+
+    @Test
+    public void testUpdate() {
+        Staff staff = new Staff();
+        staff.setStaffId(100L);
+        // 增加强制更新的列
+        staff.addForceUpdateColumn("create_datetime", null);
+        // 增加强制更新的属性
+        staff.addForceUpdateField(Staff::getStaffDesc, null);
+
+        UpdateCriteria<Staff> updateCriteria = UpdateCriteria.of(staff);
+        // 增加强制更新属性
+        updateCriteria.forceUpdate(Staff::getCreateDate, null)
+                ._startWith(Staff::getStaffDesc, "abc");
+        int rows = standaloneDao.update(updateCriteria);
+        System.out.println("deleted rows:" + rows);
+    }
+
+    @Test
     public void testSelectWithClass() {
         Staff staff = standaloneDao.select(Criteria.of(Staff.class)
                 ._equals(Staff::getStaffId, Staff::getStaffId)
@@ -89,6 +135,8 @@ public class StandaloneDaoTest {
                 ._greaterThan(Staff::getCreateDatetime, LocalDateTime.MIN)
                 // * 指定返回的列
                 .resultFields(Staff::getStaffId, Staff::getStaffDesc, Staff::getSettings)
+                // *  分页信息
+                .pageSize(10).pageNumber(1)
         );
         System.out.println();
     }
@@ -104,16 +152,4 @@ public class StandaloneDaoTest {
                 .orderBy(Staff::getCreateDate, OrderByDirection.desc)
         );
     }
-
-    @Test
-    public void testIn() {
-        List<Long> ids = new ArrayList<Long>() {{
-            add(1L);
-            add(2L);
-        }};
-        Criteria<Staff> criteria = Criteria.of(Staff.class)._in(Staff::getStaffId, ids);
-        List<Staff> list = standaloneDao.list(criteria);
-        System.out.println();
-    }
-
 }

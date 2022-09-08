@@ -2,6 +2,7 @@ package com.sintrue.matrix.example.controller;
 
 import com.sintrue.matrix.example.domain.Staff;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import wang.liangchen.matrix.framework.commons.exception.MatrixErrorException;
@@ -20,9 +21,10 @@ public class StaffController {
     @GetMapping("/object")
     public Staff object() {
         Staff staff = new Staff();
-        staff.setStaffId(1000L);
+        staff.setStaffId(999999999999999999L);
         return staff;
     }
+
     @GetMapping("/void")
     public void voidMethod() {
     }
@@ -55,4 +57,5 @@ public class StaffController {
     public void exceptionWarn() {
         throw new MatrixWarnException("I am Warn Exception");
     }
+
 }
