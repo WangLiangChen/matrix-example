@@ -2,7 +2,6 @@ package com.sintrue.matrix.example.controller;
 
 import com.sintrue.matrix.example.domain.Staff;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import wang.liangchen.matrix.framework.commons.exception.MatrixErrorException;
