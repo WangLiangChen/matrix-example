@@ -61,7 +61,7 @@
         <dependency>
             <groupId>wang.liangchen.matrix</groupId>
             <artifactId>matrix-framework-ddd</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${version.matrix}</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
