@@ -19,8 +19,8 @@ public class Task {
         return new RdbmsLockManager(dataSource);
     }
 
-    @Scheduled(fixedDelay = 2000)
-    @MatrixLock(lockKey = "matrix", lockAtLeast = "1m", lockAtMost = "5m")
+    //@Scheduled(fixedDelay = 2000)
+    //@MatrixLock(lockKey = "matrix", lockAtLeast = "1m", lockAtMost = "5m")
     public void doJob() {
         System.out.println("doJob-----------" + Thread.currentThread());
     }

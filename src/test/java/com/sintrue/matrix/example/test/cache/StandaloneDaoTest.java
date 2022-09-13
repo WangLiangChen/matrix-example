@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import wang.liangchen.matrix.framework.data.dao.StandaloneDao;
 import wang.liangchen.matrix.framework.data.dao.criteria.Criteria;
+import wang.liangchen.matrix.framework.data.dao.criteria.SqlBuilder;
 import wang.liangchen.matrix.framework.data.dao.criteria.UpdateCriteria;
 import wang.liangchen.matrix.framework.data.pagination.OrderByDirection;
 
@@ -22,6 +23,11 @@ import java.util.ArrayList;
 public class StandaloneDaoTest {
     @Inject
     private StandaloneDao standaloneDao;
+
+    @Test
+    public void testChangeState(){
+
+    }
 
     @Test
     public void testInsert() {
@@ -151,5 +157,18 @@ public class StandaloneDaoTest {
                 .orderBy(Staff::getCreateDatetime, OrderByDirection.asc)
                 .orderBy(Staff::getCreateDate, OrderByDirection.desc)
         );
+    }
+
+    @Test
+    public void testSQL() {
+        // 直接执行SQL
+        SqlBuilder sqlBuilder = new SqlBuilder("update staff set version=version+1 where staff_id=?");
+        sqlBuilder.addArgs(100L);
+        standaloneDao.executeSql(sqlBuilder);
+
+        // 直接SQL查询
+        // standaloneDao.queryForList();
+        // standaloneDao.queryForMap();
+        // standaloneDao.queryForObject();
     }
 }

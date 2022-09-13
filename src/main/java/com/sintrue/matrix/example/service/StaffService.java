@@ -2,6 +2,7 @@ package com.sintrue.matrix.example.service;
 
 
 import com.sintrue.matrix.example.domain.Staff;
+import com.sintrue.matrix.example.domain.StateEnum;
 import com.sintrue.matrix.example.message_pl.StaffRequest;
 import com.sintrue.matrix.example.message_pl.StaffResponse;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import wang.liangchen.matrix.framework.commons.object.ObjectUtil;
 import wang.liangchen.matrix.framework.commons.validation.ValidationUtil;
 import wang.liangchen.matrix.framework.data.dao.StandaloneDao;
 import wang.liangchen.matrix.framework.data.dao.criteria.Criteria;
+import wang.liangchen.matrix.framework.data.dao.criteria.UpdateCriteria;
 import wang.liangchen.matrix.framework.ddd.northbound_ohs.ApplicationService;
 
 import javax.inject.Inject;
@@ -52,6 +54,25 @@ public class StaffService {
         }
         // 对象转换
         return entity.to(StaffResponse.class);
+    }
+
+    /**
+     * 状态迁移
+     * 状态只能从一个或多个状态迁移到一个状态
+     * 不能直接修改状态
+     *
+     * @param staffId pk
+     * @param to      post
+     * @param from    pre
+     */
+    public void stateTransition(String staffId, StateEnum to, StateEnum... from) {
+        Staff entity = new Staff();
+        entity.setState(to);
+
+        UpdateCriteria<Staff> updateCriteria = UpdateCriteria.of(entity)
+                ._equals(Staff::getStaffId, staffId)
+                ._in(Staff::getState, from);
+        standaloneDao.update(updateCriteria);
     }
 
 }

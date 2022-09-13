@@ -2,7 +2,7 @@ package com.sintrue.matrix.example.test.cache;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.CacheManager;
 import wang.liangchen.matrix.cache.sdk.override.EnableMatrixCaching;
 
 import javax.inject.Inject;
@@ -16,11 +16,15 @@ import java.util.concurrent.TimeUnit;
 public class CacheTest {
     @Inject
     private CacheService cacheService;
+    @Inject
+    private CacheManager cacheManager;
 
     @Test
     public void testMethod() throws InterruptedException {
-        String wanglc = cacheService.getName("wanglc");
-        System.out.println(wanglc);
-        TimeUnit.SECONDS.sleep(10);
+        for (int i = 0; i < 7; i++) {
+            String wanglc = cacheService.getName("wanglc");
+            System.out.println(wanglc + i);
+            TimeUnit.SECONDS.sleep(10);
+        }
     }
 }
