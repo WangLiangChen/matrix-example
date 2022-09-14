@@ -6,7 +6,6 @@ import com.sintrue.matrix.example.domain.StateEnum;
 import com.sintrue.matrix.example.message_pl.StaffRequest;
 import com.sintrue.matrix.example.message_pl.StaffResponse;
 import org.springframework.stereotype.Service;
-import wang.liangchen.matrix.framework.commons.exception.Assert;
 import wang.liangchen.matrix.framework.commons.object.ObjectUtil;
 import wang.liangchen.matrix.framework.commons.validation.ValidationUtil;
 import wang.liangchen.matrix.framework.data.dao.StandaloneDao;
@@ -41,7 +40,7 @@ public class StaffService {
 
     public int insertBulk(Collection<StaffRequest> staffRequests) {
         // 对象校验
-        Assert.INSTANCE.notEmpty(staffRequests);
+        ValidationUtil.INSTANCE.notEmpty(staffRequests);
         // 对象集合转换
         List<Staff> entities = ObjectUtil.INSTANCE.copyProperties(staffRequests, Staff.class);
         return standaloneDao.insert(entities);
