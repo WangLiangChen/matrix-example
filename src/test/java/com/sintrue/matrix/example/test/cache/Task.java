@@ -1,9 +1,7 @@
 package com.sintrue.matrix.example.test.cache;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import wang.liangchen.matrix.framework.lock.annotation.MatrixLock;
 import wang.liangchen.matrix.framework.lock.core.LockManager;
 import wang.liangchen.matrix.framework.lock.rdbms.RdbmsLockManager;
 

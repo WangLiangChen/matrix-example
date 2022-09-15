@@ -6,7 +6,7 @@ import javax.validation.constraints.NotBlank;
  * @author Liangchen.Wang 2022-09-08 11:22
  */
 public class StaffRequest {
-    @NotBlank
+    @NotBlank(message = "{javax.validation.constraints.NotBlank.message}")
     private String staffDesc;
 
     public String getStaffDesc() {
