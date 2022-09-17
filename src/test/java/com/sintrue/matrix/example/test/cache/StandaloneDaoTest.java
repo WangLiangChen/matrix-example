@@ -2,13 +2,15 @@ package com.sintrue.matrix.example.test.cache;
 
 import com.sintrue.matrix.example.domain.Settings;
 import com.sintrue.matrix.example.domain.Staff;
-import com.sintrue.matrix.example.domain.StateEnum;
+import com.sintrue.matrix.example.domain.StaffState;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
 import wang.liangchen.matrix.framework.data.dao.StandaloneDao;
 import wang.liangchen.matrix.framework.data.dao.criteria.Criteria;
 import wang.liangchen.matrix.framework.data.dao.criteria.SqlBuilder;
 import wang.liangchen.matrix.framework.data.dao.criteria.UpdateCriteria;
+import wang.liangchen.matrix.framework.data.enumeration.StateEnum;
 import wang.liangchen.matrix.framework.data.pagination.OrderByDirection;
 
 import javax.inject.Inject;
@@ -23,9 +25,11 @@ import java.util.ArrayList;
 public class StandaloneDaoTest {
     @Inject
     private StandaloneDao standaloneDao;
+    @Inject
+    private ApplicationContext applicationContext;
 
     @Test
-    public void testChangeState(){
+    public void testChangeState() {
 
     }
 
@@ -38,7 +42,7 @@ public class StandaloneDaoTest {
         staff.setCreateDatetime(LocalDateTime.now());
         staff.setCreateDate(LocalDate.now());
         // 枚举支持
-        staff.setState(StateEnum.NORMAL);
+        staff.setState(StaffState.ACTIVE);
         // 自动转换JSON支持
         staff.setSettings(new Settings("male", LocalDate.of(2000, 1, 1)));
         standaloneDao.insert(staff);
@@ -53,7 +57,7 @@ public class StandaloneDaoTest {
         staff.setCreateDatetime(LocalDateTime.now());
         staff.setCreateDate(LocalDate.now());
         // 枚举支持
-        staff.setState(StateEnum.NORMAL);
+        staff.setState(StaffState.ACTIVE);
         // 自动转换JSON支持
         staff.setSettings(new Settings("male", LocalDate.of(2000, 1, 1)));
         standaloneDao.insert(new ArrayList<Staff>() {{
@@ -109,14 +113,14 @@ public class StandaloneDaoTest {
     }
 
     @Test
-    public void testSelectWithClass() {
+    public void testSelectWithClass(){
         Staff staff = standaloneDao.select(Criteria.of(Staff.class)
                 ._equals(Staff::getStaffId, Staff::getStaffId)
-                ._equals(Staff::getStaffId, 438764791394248808L)
+                ._equals(Staff::getStaffId, 440337025946658919L)
                 ._startWith(Staff::getStaffDesc, "staff")
                 ._contains(Staff::getStaffDesc, "staff")
                 ._between(Staff::getCreateDate, LocalDate.MIN, LocalDate.MAX)
-                ._in(Staff::getState, StateEnum.NORMAL, StateEnum.DELETED)
+                //._in(Staff::getState, StateEnum.NORMAL, StateEnum.DELETED)
                 ._isNotNull(Staff::getCreateDatetime)
                 ._greaterThan(Staff::getCreateDatetime, LocalDateTime.MIN)
         );
@@ -170,5 +174,6 @@ public class StandaloneDaoTest {
         // standaloneDao.queryForList();
         // standaloneDao.queryForMap();
         // standaloneDao.queryForObject();
+
     }
 }

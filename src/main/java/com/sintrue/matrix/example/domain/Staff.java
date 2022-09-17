@@ -6,6 +6,7 @@ import wang.liangchen.matrix.framework.data.annotation.ColumnJson;
 import wang.liangchen.matrix.framework.data.annotation.ColumnMarkDelete;
 import wang.liangchen.matrix.framework.data.annotation.IdStrategy;
 import wang.liangchen.matrix.framework.data.dao.entity.RootEntity;
+import wang.liangchen.matrix.framework.data.enumeration.StateEnum;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

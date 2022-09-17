@@ -1,5 +1,6 @@
 package com.sintrue.matrix.example.test.cache;
 
+import com.nimbusds.jose.JWSAlgorithm;
 import com.nimbusds.jwt.JWTClaimsSet;
 import org.junit.jupiter.api.Test;
 import wang.liangchen.matrix.framework.commons.encryption.KeyPairString;
@@ -23,7 +24,7 @@ public class JwtTest {
                 .expirationTime(new Date(new Date().getTime() + 60 * 1000))
                 .build();
 
-        String jwt = JwtUtil.INSTANCE.sign(secretKey, claimsSet);
+        String jwt = JwtUtil.INSTANCE.sign(JWSAlgorithm.HS256,secretKey, claimsSet);
         System.out.println("jwt:" + jwt);
         JWTClaimsSet verify = JwtUtil.INSTANCE.verify(secretKey, jwt);
         System.out.println("verify:" + verify);
@@ -40,7 +41,7 @@ public class JwtTest {
         KeyPairString keyPairString = JwtUtil.INSTANCE.keyPair();
         String privateKey = keyPairString.getPrivateKeyString();
         System.out.println("privateKey:" + privateKey);
-        String rsaSign = JwtUtil.INSTANCE.rsaSign(privateKey, claimsSet);
+        String rsaSign = JwtUtil.INSTANCE.rsaSign(JWSAlgorithm.RS256,privateKey, claimsSet);
         System.out.println("rsaSign:" + rsaSign);
         String publicKey = keyPairString.getPublicKeyString();
         System.out.println("publicKey:" + publicKey);

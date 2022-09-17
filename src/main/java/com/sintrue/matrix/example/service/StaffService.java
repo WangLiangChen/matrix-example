@@ -2,7 +2,6 @@ package com.sintrue.matrix.example.service;
 
 
 import com.sintrue.matrix.example.domain.Staff;
-import com.sintrue.matrix.example.domain.StateEnum;
 import com.sintrue.matrix.example.message_pl.StaffRequest;
 import com.sintrue.matrix.example.message_pl.StaffResponse;
 import org.springframework.stereotype.Service;
@@ -11,6 +10,7 @@ import wang.liangchen.matrix.framework.commons.validation.ValidationUtil;
 import wang.liangchen.matrix.framework.data.dao.StandaloneDao;
 import wang.liangchen.matrix.framework.data.dao.criteria.Criteria;
 import wang.liangchen.matrix.framework.data.dao.criteria.UpdateCriteria;
+import wang.liangchen.matrix.framework.data.enumeration.StateEnum;
 import wang.liangchen.matrix.framework.ddd.northbound_ohs.ApplicationService;
 
 import javax.inject.Inject;

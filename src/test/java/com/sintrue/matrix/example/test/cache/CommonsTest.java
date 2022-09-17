@@ -1,7 +1,9 @@
 package com.sintrue.matrix.example.test.cache;
 
+import com.sintrue.matrix.example.domain.StaffState;
 import com.sintrue.matrix.example.message_pl.StaffRequest;
 import org.junit.jupiter.api.Test;
+import wang.liangchen.matrix.framework.commons.enumeration.CommonEnum;
 import wang.liangchen.matrix.framework.commons.string.StringUtil;
 import wang.liangchen.matrix.framework.commons.validation.ValidationUtil;
 
@@ -24,24 +26,38 @@ public class CommonsTest {
     public void testValidator() {
         StaffRequest staff = new StaffRequest();
         ValidationUtil.INSTANCE.setLocale(Locale.ENGLISH);
-        try{
+        try {
             ValidationUtil.INSTANCE.validate(staff);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         ValidationUtil.INSTANCE.setLocale(Locale.CHINA);
-        try{
+        try {
             ValidationUtil.INSTANCE.validate(staff);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         ValidationUtil.INSTANCE.setLocale(Locale.JAPAN);
-        try{
+        try {
             ValidationUtil.INSTANCE.validate(staff);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+    @Test
+    public void testStateEnum(){
+
+        stateEnum(StaffState.NONE);
+    }
+    private void stateEnum(CommonEnum commonEnum){
+        System.out.println(commonEnum.getClass());
+        System.out.println(commonEnum.name());
+        System.out.println(commonEnum.value());
+        System.out.println(CommonEnum.valueOf("NONE"));
+
+    }
+
+
 }
