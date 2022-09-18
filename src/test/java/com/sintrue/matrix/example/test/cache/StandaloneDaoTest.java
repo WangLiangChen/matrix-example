@@ -89,7 +89,7 @@ public class StandaloneDaoTest {
         staff.setStaffId(100L);
         staff.setCreateDatetime(LocalDateTime.MAX);
 
-        // 增加强制更新的列
+        // 增加强制更新的列，会覆盖entity中对应属性值
         staff.addForceUpdateColumn("create_datetime", null);
         // 增加强制更新的属性
         staff.addForceUpdateField(Staff::getStaffDesc, null);
@@ -101,14 +101,16 @@ public class StandaloneDaoTest {
     public void testUpdate() {
         Staff staff = new Staff();
         staff.setStaffId(100L);
+        staff.setCreateDatetime(LocalDateTime.MAX);
         // 增加强制更新的列
         staff.addForceUpdateColumn("create_datetime", null);
         // 增加强制更新的属性
         staff.addForceUpdateField(Staff::getStaffDesc, null);
 
-        UpdateCriteria<Staff> updateCriteria = UpdateCriteria.of(Staff.class);
-        // 增加强制更新属性
-        updateCriteria.forceUpdate(Staff::getCreateDate, null)
+        UpdateCriteria<Staff> updateCriteria = UpdateCriteria.of(staff)
+                // 设置强制更新
+                .forceUpdate(Staff::getCreateDate, null)
+                // 设置条件
                 ._startWith(Staff::getStaffDesc, "abc");
         int rows = standaloneDao.update(updateCriteria);
         System.out.println("deleted rows:" + rows);
