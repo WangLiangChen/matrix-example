@@ -87,6 +87,8 @@ public class StandaloneDaoTest {
     public void testUpdateById() {
         Staff staff = new Staff();
         staff.setStaffId(100L);
+        staff.setCreateDatetime(LocalDateTime.MAX);
+
         // 增加强制更新的列
         staff.addForceUpdateColumn("create_datetime", null);
         // 增加强制更新的属性
@@ -104,7 +106,7 @@ public class StandaloneDaoTest {
         // 增加强制更新的属性
         staff.addForceUpdateField(Staff::getStaffDesc, null);
 
-        UpdateCriteria<Staff> updateCriteria = UpdateCriteria.of(staff);
+        UpdateCriteria<Staff> updateCriteria = UpdateCriteria.of(Staff.class);
         // 增加强制更新属性
         updateCriteria.forceUpdate(Staff::getCreateDate, null)
                 ._startWith(Staff::getStaffDesc, "abc");
@@ -113,7 +115,7 @@ public class StandaloneDaoTest {
     }
 
     @Test
-    public void testSelectWithClass(){
+    public void testSelectWithClass() {
         Staff staff = standaloneDao.select(Criteria.of(Staff.class)
                 ._equals(Staff::getStaffId, Staff::getStaffId)
                 ._equals(Staff::getStaffId, 440337025946658919L)
