@@ -1,12 +1,12 @@
 package com.sintrue.matrix.example.domain;
 
+import wang.liangchen.matrix.framework.commons.enumeration.ConstantEnum;
 import wang.liangchen.matrix.framework.commons.object.ObjectUtil;
 import wang.liangchen.matrix.framework.commons.type.ClassUtil;
 import wang.liangchen.matrix.framework.data.annotation.ColumnJson;
 import wang.liangchen.matrix.framework.data.annotation.ColumnMarkDelete;
 import wang.liangchen.matrix.framework.data.annotation.IdStrategy;
 import wang.liangchen.matrix.framework.data.dao.entity.RootEntity;
-import wang.liangchen.matrix.framework.data.enumeration.StateEnum;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,7 +36,7 @@ public class Staff extends RootEntity {
      * 指定逻辑删除的列和值
      */
     @ColumnMarkDelete("DELETED")
-    private StateEnum state;
+    private ConstantEnum state;
     /**
      * 自动转换属性和Json
      */
@@ -83,11 +83,11 @@ public class Staff extends RootEntity {
         this.createDate = createDate;
     }
 
-    public StateEnum getState() {
+    public ConstantEnum getState() {
         return state;
     }
 
-    public void setState(StateEnum state) {
+    public void setState(ConstantEnum state) {
         this.state = state;
     }
 

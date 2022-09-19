@@ -3,8 +3,9 @@ package com.sintrue.matrix.example.test.cache;
 import com.sintrue.matrix.example.domain.StaffState;
 import com.sintrue.matrix.example.message_pl.StaffRequest;
 import org.junit.jupiter.api.Test;
-import wang.liangchen.matrix.framework.commons.enumeration.CommonEnum;
+import wang.liangchen.matrix.framework.commons.enumeration.ConstantEnum;
 import wang.liangchen.matrix.framework.commons.string.StringUtil;
+import wang.liangchen.matrix.framework.commons.uid.NanoIdUtil;
 import wang.liangchen.matrix.framework.commons.validation.ValidationUtil;
 
 import java.util.Locale;
@@ -49,14 +50,18 @@ public class CommonsTest {
     @Test
     public void testStateEnum(){
 
-        stateEnum(StaffState.NONE);
+        stateEnum(StaffState.STAFF_ONLY);
     }
-    private void stateEnum(CommonEnum commonEnum){
-        System.out.println(commonEnum.getClass());
-        System.out.println(commonEnum.name());
-        System.out.println(commonEnum.value());
-        System.out.println(CommonEnum.valueOf("NONE"));
+    private void stateEnum(ConstantEnum constantEnum){
+        System.out.println(constantEnum.getClass());
+        System.out.println(constantEnum.name());
+        System.out.println(constantEnum.value());
+        System.out.println(ConstantEnum.valueOf("NONE"));
 
+    }
+    @Test
+    public void testNanoId(){
+        System.out.println(NanoIdUtil.INSTANCE.randomNanoId());
     }
 
 

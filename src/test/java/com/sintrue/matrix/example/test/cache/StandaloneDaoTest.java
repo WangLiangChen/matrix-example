@@ -42,7 +42,7 @@ public class StandaloneDaoTest {
         staff.setCreateDatetime(LocalDateTime.now());
         staff.setCreateDate(LocalDate.now());
         // 枚举支持
-        staff.setState(StaffState.ACTIVE);
+        staff.setState(StaffState.STAFF_ONLY);
         // 自动转换JSON支持
         staff.setSettings(new Settings("male", LocalDate.of(2000, 1, 1)));
         standaloneDao.insert(staff);
@@ -57,7 +57,7 @@ public class StandaloneDaoTest {
         staff.setCreateDatetime(LocalDateTime.now());
         staff.setCreateDate(LocalDate.now());
         // 枚举支持
-        staff.setState(StaffState.ACTIVE);
+        staff.setState(StaffState.STAFF_ONLY);
         // 自动转换JSON支持
         staff.setSettings(new Settings("male", LocalDate.of(2000, 1, 1)));
         standaloneDao.insert(new ArrayList<Staff>() {{
@@ -120,7 +120,7 @@ public class StandaloneDaoTest {
     public void testSelectWithClass() {
         Staff staff = standaloneDao.select(Criteria.of(Staff.class)
                 ._equals(Staff::getStaffId, Staff::getStaffId)
-                ._equals(Staff::getStaffId, 440337025946658919L)
+                ._equals(Staff::getStaffId, 440767737397028965L)
                 ._startWith(Staff::getStaffDesc, "staff")
                 ._contains(Staff::getStaffDesc, "staff")
                 ._between(Staff::getCreateDate, LocalDate.MIN, LocalDate.MAX)
