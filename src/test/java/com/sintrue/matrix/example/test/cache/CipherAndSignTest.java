@@ -13,7 +13,7 @@ public class CipherAndSignTest {
     public void testHmac() {
         String key = "matrix";
         String data = "matrix_matrix";
-        for (HmacAligorithm aligorithm : HmacAligorithm.values()) {
+        for (HmacAlgorithm aligorithm : HmacAlgorithm.values()) {
             String hmac = DigestSignUtil.INSTANCE.hmac(aligorithm, key, data);
             System.out.println(aligorithm + ":" + hmac);
         }
@@ -108,7 +108,7 @@ public class CipherAndSignTest {
         System.out.println("-payload:");
         System.out.println(signatureClaim.getPayload());
 
-        String signString = signatureClaim.sign(HmacAligorithm.HmacSHA256, hmacKey);
+        String signString = signatureClaim.sign(HmacAlgorithm.HmacSHA256, hmacKey);
         System.out.println("-signString:");
         System.out.println(signString);
 
