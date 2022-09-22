@@ -135,7 +135,6 @@ public class StandaloneDaoTest {
     public void testSelectWithObject() {
         Staff param = new Staff();
         param.setStaffId(438764791394248808L);
-
         Staff staff = standaloneDao.select(Criteria.of(param)
                 // * 取对象的属性值比较
                 ._equals(Staff::getStaffId)
