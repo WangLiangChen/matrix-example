@@ -53,5 +53,16 @@ public class StaffService {
         return entity.to(StaffResponse.class);
     }
 
+    public StaffResponse pagination(StaffRequest staffRequest) {
+
+        Criteria.of(Staff.class)
+                .pageNumber(staffRequest.getPageNumber())
+                .pageSize(staffRequest.getPageSize())
+                .orderBy(staffRequest.getOrderBys())
+                .pagination(staffRequest);
+        return null;
+
+    }
+
 
 }

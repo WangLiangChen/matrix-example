@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import wang.liangchen.matrix.framework.data.dao.StandaloneDao;
 import wang.liangchen.matrix.framework.data.dao.criteria.Criteria;
+import wang.liangchen.matrix.framework.data.dao.criteria.DeleteCriteria;
 import wang.liangchen.matrix.framework.data.dao.criteria.SqlBuilder;
 import wang.liangchen.matrix.framework.data.dao.criteria.UpdateCriteria;
 import wang.liangchen.matrix.framework.data.enumeration.StateEnum;
@@ -62,7 +63,6 @@ public class StandaloneDaoTest {
         staff.setSettings(new Settings("male", LocalDate.of(2000, 1, 1)));
         standaloneDao.insert(new ArrayList<Staff>() {{
             add(staff);
-            add((Staff) staff.clone());
         }});
     }
 
@@ -78,7 +78,7 @@ public class StandaloneDaoTest {
     @Test
     public void testDelete() {
         //@ColumnMarkDelete("DELETED") 逻辑删除
-        Criteria<Staff> criteria = Criteria.of(Staff.class)._startWith(Staff::getStaffDesc, "wanglc");
+        DeleteCriteria<Staff> criteria = DeleteCriteria.of(Staff.class)._startWith(Staff::getStaffDesc, "wanglc");
         int rows = standaloneDao.delete(criteria);
         System.out.println("deleted rows:" + rows);
     }
@@ -159,6 +159,7 @@ public class StandaloneDaoTest {
         standaloneDao.pagination(Criteria.of(Staff.class)
                 ._startWith(Staff::getStaffDesc, "staff")
                 // 分页
+                // .pagination()
                 .pageNumber(1).pageSize(5)
                 // 排序
                 .orderBy(Staff::getCreateDatetime, OrderByDirection.asc)
