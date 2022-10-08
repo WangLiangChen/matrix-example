@@ -2,7 +2,7 @@ package com.sintrue.matrix.example.test.cache;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import wang.liangchen.matrix.framework.generator.DomainGenerator;
+import wang.liangchen.matrix.framework.generator.DDDGenerator;
 
 import javax.annotation.Resource;
 
@@ -12,11 +12,10 @@ import javax.annotation.Resource;
 @SpringBootTest
 public class CodeGenerator {
     @Resource
-    private DomainGenerator domainGenerator;
+    private DDDGenerator dddGenerator;
 
     @Test
     public void generate() {
-
-        domainGenerator.build();
+        dddGenerator.generate();
     }
 }
