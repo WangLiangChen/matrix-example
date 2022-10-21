@@ -6,6 +6,6 @@
  * DomainService {@link wang.liangchen.matrix.framework.ddd.domain.DomainService}
  */
 @Domain
-package com.sintrue.matrix.example.company.domain;
+package com.sintrue.matrix.example.hr.domain;
 
 import wang.liangchen.matrix.framework.ddd.domain.Domain;

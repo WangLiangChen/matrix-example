@@ -1,4 +1,4 @@
-package com.sintrue.matrix.example.test.cache;
+package com.sintrue.matrix.example.test;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;

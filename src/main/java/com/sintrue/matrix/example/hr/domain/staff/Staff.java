@@ -1,53 +1,90 @@
-package com.sintrue.matrix.example.company.domain.staff;
+package com.sintrue.matrix.example.hr.domain.staff;
 
 import wang.liangchen.matrix.framework.commons.object.ObjectUtil;
 import wang.liangchen.matrix.framework.commons.type.ClassUtil;
-import wang.liangchen.matrix.framework.data.annotation.IdStrategy;
-import wang.liangchen.matrix.framework.data.annotation.ColumnMarkDelete;
 import wang.liangchen.matrix.framework.data.annotation.ColumnJson;
+import wang.liangchen.matrix.framework.data.annotation.ColumnMarkDelete;
+import wang.liangchen.matrix.framework.data.annotation.ColumnState;
+import wang.liangchen.matrix.framework.data.annotation.IdStrategy;
 import wang.liangchen.matrix.framework.data.dao.entity.RootEntity;
 import wang.liangchen.matrix.framework.ddd.domain.AggregateRoot;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Version;
 import java.time.LocalDateTime;
 
 /**
- * @author Liangchen.Wang
+ * 员工实体示例
+ * @author Liangchen.Wang 2022-10-11 17:30:31
  */
 @AggregateRoot
 @Entity(name = "staff")
 public class Staff extends RootEntity {
+    /**
+     * Primarykey
+     */
     @Id
     @IdStrategy(IdStrategy.Strategy.MatrixFlake)
     @Column(name = "staff_id")
     private Long staffId;
+    /**
+     * 名称
+     */
     @Column(name = "staff_name")
     private String staffName;
     /**
-     * 对象和JSON格式互转列
+     * Json格式配置信息
+     * 对象和JSON格式自动互转列
+     * 非基本类型需实现Serializable接口以避免代码错误提示
      */
     @ColumnJson
     @Column(name = "staff_settings")
-    private String staffSettings;
+    private StaffSettings staffSettings;
+    /**
+     * 版本号,可用于乐观锁
+     */
     @Version
     @Column(name = "version")
     private Integer version;
+    /**
+     * 属主标识
+     */
     @Column(name = "owner")
     private String owner;
+    /**
+     * 创建者标识
+     */
     @Column(name = "creator")
     private String creator;
+    /**
+     * 创建时间,长度6
+     */
     @Column(name = "create_datetime")
     private LocalDateTime createDatetime;
+    /**
+     * 最后修改者标识
+     */
     @Column(name = "modifier")
     private String modifier;
+    /**
+     * 最后修改时间,长度6
+     */
     @Column(name = "modify_datetime")
     private LocalDateTime modifyDatetime;
+    /**
+     * 简述说明
+     */
     @Column(name = "summary")
     private String summary;
     /**
-     * 逻辑删除的列和逻辑值
+     * 状态
+     * 逻辑删除列和值
+     * 状态列
      */
-    @ColumnMarkDelete("DELETED")
+    //@ColumnMarkDelete("DELETED")
+    @ColumnState
     @Column(name = "state")
     private String state;
 
@@ -78,10 +115,10 @@ public class Staff extends RootEntity {
     public void setStaffName(String staffName) {
         this.staffName = staffName;
     }
-    public String getStaffSettings() {
+    public StaffSettings getStaffSettings() {
         return this.staffSettings;
     }
-    public void setStaffSettings(String staffSettings) {
+    public void setStaffSettings(StaffSettings staffSettings) {
         this.staffSettings = staffSettings;
     }
     public Integer getVersion() {

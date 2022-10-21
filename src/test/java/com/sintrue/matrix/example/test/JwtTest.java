@@ -1,4 +1,4 @@
-package com.sintrue.matrix.example.test.cache;
+package com.sintrue.matrix.example.test;
 
 import com.nimbusds.jose.JWSAlgorithm;
 import com.nimbusds.jwt.JWTClaimsSet;

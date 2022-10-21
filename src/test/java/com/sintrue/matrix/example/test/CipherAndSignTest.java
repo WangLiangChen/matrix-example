@@ -1,4 +1,4 @@
-package com.sintrue.matrix.example.test.cache;
+package com.sintrue.matrix.example.test;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.util.AntPathMatcher;
@@ -26,6 +26,10 @@ public class CipherAndSignTest {
             String hmac = DigestSignUtil.INSTANCE.digest(aligorithm, data);
             System.out.println(aligorithm + ":" + hmac);
         }
+    }
+    @Test
+    public void testBase64(){
+        System.out.println(Base64Util.INSTANCE.encode("wanglc"));
     }
 
     @Test
