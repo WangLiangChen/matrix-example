@@ -1,7 +1,7 @@
 package com.sintrue.matrix.example.hr.northbound_ohs.remote.controller;
 
 import com.sintrue.matrix.example.hr.domain.staff.Staff;
-import com.sintrue.matrix.example.hr.message_pl.north.StaffRequest;
+import com.sintrue.matrix.example.hr.message_pl.north.admin.StaffAdminRequest;
 import com.sintrue.matrix.example.hr.northbound_ohs.local.StaffService;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,8 +41,8 @@ public class StaffController {
      * void，直接序列化为特定的JSON格式
      */
     @PostMapping
-    public void add(@RequestBody StaffRequest staffRequest) {
-        this.staffService.add(staffRequest);
+    public void add(@RequestBody StaffAdminRequest staffAdminRequest) {
+        this.staffService.add(staffAdminRequest);
     }
 
 }

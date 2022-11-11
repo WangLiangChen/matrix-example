@@ -1,13 +1,8 @@
 package com.sintrue.matrix.example.test;
 
-import com.sintrue.matrix.example.hr.message_pl.north.StaffRequest;
+import com.sintrue.matrix.example.hr.message_pl.north.admin.StaffAdminRequest;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.servlet.LocaleResolver;
 import wang.liangchen.matrix.framework.commons.validation.ValidationUtil;
-
-import javax.inject.Inject;
-import java.util.Locale;
 
 /**
  * @author Liangchen.Wang 2022-10-12 8:36
@@ -16,9 +11,9 @@ import java.util.Locale;
 public class I18nTest {
     @Test
     public void testValidator() {
-        StaffRequest staffRequest = new StaffRequest();
+        StaffAdminRequest staffAdminRequest = new StaffAdminRequest();
         //ValidationUtil.INSTANCE.setLocale(Locale.CHINA);
-        ValidationUtil.INSTANCE.validate(staffRequest);
+        ValidationUtil.INSTANCE.validate(staffAdminRequest);
     }
     @Test
     public void testValidateCondition() {

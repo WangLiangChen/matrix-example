@@ -21,7 +21,7 @@ public class CipherAndSignTest {
 
     @Test
     public void testDigest() {
-        String data = "matrix_matrix";
+        String data = "a lenovo pc";
         for (DigestAlgorithm aligorithm : DigestAlgorithm.values()) {
             String hmac = DigestSignUtil.INSTANCE.digest(aligorithm, data);
             System.out.println(aligorithm + ":" + hmac);
