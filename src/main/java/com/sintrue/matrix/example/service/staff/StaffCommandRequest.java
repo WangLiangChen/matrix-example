@@ -1,16 +1,14 @@
-package com.sintrue.matrix.example.hr.message_pl.north.admin;
+package com.sintrue.matrix.example.service.staff;
 
-import com.sintrue.matrix.example.hr.domain.staff.StaffSettings;
-
-import javax.validation.constraints.NotBlank;
+import com.sintrue.matrix.example.entity.StaffSettings;
 
 /**
- * @author Liangchen.Wang 2022-10-11 11:51
+ * @author Liangchen.Wang 2022-12-09 21:24
  */
-public class StaffAdminRequest {
-    @NotBlank(message = "{staffName.NotBlank.message}")
+public class StaffCommandRequest {
     private String staffName;
     private StaffSettings staffSettings;
+    private String summary;
 
     public String getStaffName() {
         return staffName;
@@ -26,5 +24,13 @@ public class StaffAdminRequest {
 
     public void setStaffSettings(StaffSettings staffSettings) {
         this.staffSettings = staffSettings;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 }
