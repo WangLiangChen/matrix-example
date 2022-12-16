@@ -1,21 +1,23 @@
 package com.sintrue.matrix.example.service.staff;
 
-import com.sintrue.matrix.example.entity.StaffSettings;
+import wang.liangchen.matrix.framework.commons.enumeration.ConstantEnum;
+import wang.liangchen.matrix.framework.data.dao.entity.JsonField;
+import wang.liangchen.matrix.framework.springboot.annotation.AutoFieldNames;
 
 import java.time.LocalDateTime;
 
 /**
  * @author Liangchen.Wang 2022-12-09 21:27
  */
+
+@AutoFieldNames
 public class StaffResponse {
     private Long staffId;
     private String staffName;
-    private StaffSettings staffSettings;
-    private String owner;
+    private JsonField staffSettings;
     private String creator;
     private LocalDateTime createDatetime;
-    private String modifier;
-    private LocalDateTime modify_datetime;
+    private ConstantEnum state;
 
     public Long getStaffId() {
         return staffId;
@@ -33,20 +35,12 @@ public class StaffResponse {
         this.staffName = staffName;
     }
 
-    public StaffSettings getStaffSettings() {
+    public JsonField getStaffSettings() {
         return staffSettings;
     }
 
-    public void setStaffSettings(StaffSettings staffSettings) {
+    public void setStaffSettings(JsonField staffSettings) {
         this.staffSettings = staffSettings;
-    }
-
-    public String getOwner() {
-        return owner;
-    }
-
-    public void setOwner(String owner) {
-        this.owner = owner;
     }
 
     public String getCreator() {
@@ -65,19 +59,11 @@ public class StaffResponse {
         this.createDatetime = createDatetime;
     }
 
-    public String getModifier() {
-        return modifier;
+    public ConstantEnum getState() {
+        return state;
     }
 
-    public void setModifier(String modifier) {
-        this.modifier = modifier;
-    }
-
-    public LocalDateTime getModify_datetime() {
-        return modify_datetime;
-    }
-
-    public void setModify_datetime(LocalDateTime modify_datetime) {
-        this.modify_datetime = modify_datetime;
+    public void setState(ConstantEnum state) {
+        this.state = state;
     }
 }

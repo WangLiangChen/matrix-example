@@ -1,7 +1,6 @@
 package com.sintrue.matrix.example.service.staff;
 
 import com.sintrue.matrix.example.entity.Staff;
-import com.sintrue.matrix.example.entity.StaffState;
 import jakarta.inject.Inject;
 import org.springframework.stereotype.Service;
 import wang.liangchen.matrix.framework.commons.object.ObjectUtil;
@@ -11,9 +10,12 @@ import wang.liangchen.matrix.framework.data.dao.StandaloneDao;
 import wang.liangchen.matrix.framework.data.dao.criteria.Criteria;
 import wang.liangchen.matrix.framework.data.dao.criteria.DeleteCriteria;
 import wang.liangchen.matrix.framework.data.dao.criteria.UpdateCriteria;
+import wang.liangchen.matrix.framework.data.pagination.OrderByDirection;
 import wang.liangchen.matrix.framework.data.pagination.PaginationResult;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -34,10 +36,9 @@ public class StaffService {
     public StaffResponse insert(StaffCommandRequest staffCommandRequest) {
         // 校验工具-多语言支持
         ValidationUtil.INSTANCE.notNull(staffCommandRequest);
-        // 对象转换
+        // 对象转换 toEntity
         Staff staff = Staff.valueOf(staffCommandRequest, Staff.class);
-        // 状态枚举
-        staff.setState(StaffState.NORMAL);
+
         // 初始化未赋值的属性
         staff.initializeFields();
         this.standaloneDao.insert(staff);
@@ -45,19 +46,27 @@ public class StaffService {
         return staff.to(StaffResponse.class);
     }
 
-    public int insertBulk(List<Staff> staffs) {
+    public int insertBulk(Collection<StaffCommandRequest> staffCommandRequests) {
+        // 集合对象转换+函数式过程处理
+        List<Staff> staffs = ObjectUtil.INSTANCE.copyProperties(staffCommandRequests, Staff.class, (S, T) -> {
+            T.initializeFields();
+        });
         return this.standaloneDao.insert(staffs);
     }
 
     public List<StaffResponse> list() {
-        Criteria<Staff> criteria = Criteria.of(Staff.class)
+        Staff staff = new Staff();
+        staff.setStaffId(0L);
+        Criteria<Staff> criteria = Criteria.of(staff)
                 // 指定返回的列 .resultColumns("staff_id","staff_name","staff_settings")
-                .resultFields(Staff::getStaffId, Staff::getStaffName, Staff::getStaffSettings)
+                .resultFields(Staff::getStaffId, Staff::getStaffName, Staff::getStaffSettings, Staff::getCreator, Staff::getCreateDatetime, Staff::getState)
                 // 特殊场景
-                // .distinct().forUpdate()
+                // .distinct().forUpdate().disableCache()
                 // 构造查询条件
                 ._startWith(Staff::getStaffName, "wanglc")
                 ._lessThan(Staff::getCreateDatetime, LocalDateTime.MAX)
+                ._equals(Staff::getStaffId)
+                .orderBy(Staff::getCreateDatetime, OrderByDirection.asc)
                 .pageSize(5);
         List<Staff> staffs = this.standaloneDao.list(criteria);
         // 集合对象转换
@@ -67,13 +76,13 @@ public class StaffService {
     public PaginationResult<StaffResponse> pagination() {
         Criteria<Staff> criteria = Criteria.of(Staff.class)
                 // 指定返回的列 .resultColumns("staff_id","staff_name","staff_settings")
-                .resultFields(Staff::getStaffId, Staff::getStaffName, Staff::getStaffSettings)
+                .resultFields(Staff::getStaffId, Staff::getStaffName, Staff::getStaffSettings, Staff::getCreator, Staff::getCreateDatetime, Staff::getState)
                 // 特殊场景
-                // .distinct().forUpdate()
+                // .distinct().forUpdate().disableCache()
                 // 构造查询条件
                 ._startWith(Staff::getStaffName, "wanglc")
                 ._lessThan(Staff::getCreateDatetime, LocalDateTime.MAX)
-                .pageSize(5).pageNumber(1);
+                .pageSize(2).pageNumber(1);
         PaginationResult<Staff> pagination = this.standaloneDao.pagination(criteria);
         // 对象转换
         return pagination.to(StaffResponse.class);

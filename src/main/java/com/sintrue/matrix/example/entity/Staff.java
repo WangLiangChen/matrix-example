@@ -8,13 +8,16 @@ import wang.liangchen.matrix.framework.data.annotation.ColumnJson;
 import wang.liangchen.matrix.framework.data.annotation.ColumnMarkDelete;
 import wang.liangchen.matrix.framework.data.annotation.ColumnState;
 import wang.liangchen.matrix.framework.data.annotation.IdStrategy;
+import wang.liangchen.matrix.framework.data.dao.entity.JsonField;
 import wang.liangchen.matrix.framework.data.dao.entity.RootEntity;
+import wang.liangchen.matrix.framework.springboot.annotation.AutoFieldNames;
 
 import java.time.LocalDateTime;
 
 /**
  * @author Liangchen.Wang 2022-12-09 21:06
  */
+@AutoFieldNames
 @Entity(name = "staff")
 public class Staff extends RootEntity {
     @Id
@@ -22,10 +25,10 @@ public class Staff extends RootEntity {
     private Long staffId;
     private String staffName;
     /**
-     * 自动转换对象和JSON
+     * 对象和JSON互转，支持JsonField和Pojo
      */
     @ColumnJson
-    private StaffSettings staffSettings;
+    private JsonField staffSettings;
     /**
      * 乐观锁
      */
@@ -38,7 +41,8 @@ public class Staff extends RootEntity {
     private LocalDateTime modify_datetime;
     private String summary;
     /**
-     * 状态列使用可继承的枚举
+     * 状态列
+     * 可继承的常量枚举
      * 逻辑删除
      */
     @ColumnState
@@ -61,11 +65,11 @@ public class Staff extends RootEntity {
         this.staffName = staffName;
     }
 
-    public StaffSettings getStaffSettings() {
+    public JsonField getStaffSettings() {
         return staffSettings;
     }
 
-    public void setStaffSettings(StaffSettings staffSettings) {
+    public void setStaffSettings(JsonField staffSettings) {
         this.staffSettings = staffSettings;
     }
 

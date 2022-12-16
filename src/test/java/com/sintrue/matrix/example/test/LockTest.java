@@ -17,9 +17,10 @@ public class LockTest {
     @Inject
     private LockService service;
 
+
     @Test
     public void testLock() {
-        int threads = 5;
+        int threads = 10;
         CountDownLatch countDownLatch = new CountDownLatch(threads);
         for (int i = 0; i < threads; i++) {
             new Thread(() -> {

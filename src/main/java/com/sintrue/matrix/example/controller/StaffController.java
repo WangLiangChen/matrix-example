@@ -1,6 +1,8 @@
 package com.sintrue.matrix.example.controller;
 
 import com.sintrue.matrix.example.service.staff.StaffResponse;
+import com.sintrue.matrix.example.service.staff.StaffService;
+import jakarta.inject.Inject;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.async.DeferredResult;
@@ -9,6 +11,7 @@ import wang.liangchen.matrix.framework.commons.exception.MatrixInfoException;
 import wang.liangchen.matrix.framework.commons.exception.MatrixWarnException;
 import wang.liangchen.matrix.framework.commons.runtime.MessageWrapper;
 import wang.liangchen.matrix.framework.commons.runtime.ReturnWrapper;
+import wang.liangchen.matrix.framework.data.pagination.PaginationResult;
 import wang.liangchen.matrix.framework.web.push.PushUtil;
 import wang.liangchen.matrix.framework.web.push.PusherKey;
 import wang.liangchen.matrix.framework.web.push.PusherType;
@@ -22,6 +25,14 @@ import java.util.Map;
 @RestController
 @RequestMapping("/")
 public class StaffController {
+    private final static String version = "";
+    private final StaffService staffService;
+
+    @Inject
+    public StaffController(StaffService staffService) {
+        this.staffService = staffService;
+    }
+
     @GetMapping("void")
     public void doVoid() {
 
@@ -32,6 +43,11 @@ public class StaffController {
         StaffResponse staffResponse = new StaffResponse();
         staffResponse.setStaffName("name");
         return staffResponse;
+    }
+
+    @GetMapping("pagination")
+    public PaginationResult<StaffResponse> pagination() {
+        return staffService.pagination();
     }
 
     @GetMapping("returnWrapper")

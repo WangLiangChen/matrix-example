@@ -1,6 +1,6 @@
 package com.sintrue.matrix.example.test;
 
-import com.sintrue.matrix.example.entity.StaffSettings;
+import com.sintrue.matrix.example.entity.StaffState;
 import com.sintrue.matrix.example.service.staff.StaffCommandRequest;
 import com.sintrue.matrix.example.service.staff.StaffResponse;
 import com.sintrue.matrix.example.service.staff.StaffService;
@@ -8,9 +8,11 @@ import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import wang.liangchen.matrix.framework.commons.random.RandomUtil;
+import wang.liangchen.matrix.framework.data.dao.StandaloneDao;
+import wang.liangchen.matrix.framework.data.dao.entity.JsonField;
 import wang.liangchen.matrix.framework.data.pagination.PaginationResult;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,19 +22,49 @@ import java.util.List;
 public class StaffTest {
     @Inject
     private StaffService staffService;
+    @Inject
+    private StandaloneDao standaloneDao;
 
     @Test
     public void insert() {
         StaffCommandRequest staffCommandRequest = new StaffCommandRequest();
         staffCommandRequest.setStaffName("wanglc_" + RandomUtil.INSTANCE.random(1, 100));
         staffCommandRequest.setSummary("insert test");
-
-        StaffSettings staffSettings = new StaffSettings();
-        staffSettings.setGender("MALE");
-        staffSettings.setBirthday(LocalDateTime.now());
+        // Json Settings
+        JsonField staffSettings = JsonField.newInstance().fluentPut("gender", "male");
         staffCommandRequest.setStaffSettings(staffSettings);
+        // State
+        staffCommandRequest.setState(StaffState.ACTIVE);
+
         StaffResponse staffResponse = staffService.insert(staffCommandRequest);
         System.out.println();
+    }
+
+    @Test
+    public void insertBulk() {
+        List<StaffCommandRequest> staffCommandRequests = new ArrayList<StaffCommandRequest>() {{
+            // first element
+            StaffCommandRequest staffCommandRequest = new StaffCommandRequest();
+            staffCommandRequest.setStaffName("wanglc_" + RandomUtil.INSTANCE.random(1, 100));
+            staffCommandRequest.setSummary("insert first");
+            // Json Settings
+            JsonField staffSettings = JsonField.newInstance().fluentPut("gender", "male");
+            staffCommandRequest.setStaffSettings(staffSettings);
+            // State
+            staffCommandRequest.setState(StaffState.ACTIVE);
+            add(staffCommandRequest);
+            // second element
+            staffCommandRequest = new StaffCommandRequest();
+            staffCommandRequest.setStaffName("wanglc_" + RandomUtil.INSTANCE.random(1, 100));
+            staffCommandRequest.setSummary("insert second");
+            // Json Settings
+            staffSettings = JsonField.newInstance().fluentPut("gender", "female");
+            staffCommandRequest.setStaffSettings(staffSettings);
+            // State
+            staffCommandRequest.setState(StaffState.NORMAL);
+            add(staffCommandRequest);
+        }};
+        staffService.insertBulk(staffCommandRequests);
     }
 
     @Test
