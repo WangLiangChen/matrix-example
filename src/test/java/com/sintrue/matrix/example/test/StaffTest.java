@@ -33,8 +33,6 @@ public class StaffTest {
         // Json Settings
         JsonField staffSettings = JsonField.newInstance().fluentPut("gender", "male");
         staffCommandRequest.setStaffSettings(staffSettings);
-        // State
-        staffCommandRequest.setState(StaffState.ACTIVE);
 
         StaffResponse staffResponse = staffService.insert(staffCommandRequest);
         System.out.println();
@@ -51,7 +49,6 @@ public class StaffTest {
             JsonField staffSettings = JsonField.newInstance().fluentPut("gender", "male");
             staffCommandRequest.setStaffSettings(staffSettings);
             // State
-            staffCommandRequest.setState(StaffState.ACTIVE);
             add(staffCommandRequest);
             // second element
             staffCommandRequest = new StaffCommandRequest();
@@ -61,7 +58,6 @@ public class StaffTest {
             staffSettings = JsonField.newInstance().fluentPut("gender", "female");
             staffCommandRequest.setStaffSettings(staffSettings);
             // State
-            staffCommandRequest.setState(StaffState.NORMAL);
             add(staffCommandRequest);
         }};
         staffService.insertBulk(staffCommandRequests);

@@ -1,5 +1,6 @@
 package com.sintrue.matrix.example.controller;
 
+import com.sintrue.matrix.example.service.staff.StaffCommandRequest;
 import com.sintrue.matrix.example.service.staff.StaffResponse;
 import com.sintrue.matrix.example.service.staff.StaffService;
 import jakarta.inject.Inject;
@@ -25,7 +26,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/")
 public class StaffController {
-    private final static String version = "";
     private final StaffService staffService;
 
     @Inject
@@ -33,23 +33,37 @@ public class StaffController {
         this.staffService = staffService;
     }
 
-    @GetMapping("void")
-    public void doVoid() {
-
+    /**
+     * 格式化空值，一般用于行为请求.如新增、删除
+     * request:
+     * {"staffName": "wanglc","summary": "I am a add summary","staffSettings": {"gender": "male"}}
+     * response:
+     * {"success":true,"level":"OFF","code":null,"message":null,"i18n":null,"locale":null,"payload":null,"requestId":"add_request","debug":null}
+     * exception:
+     * {"success":false,"level":"INFO","code":null,"message":"不能为空(staffName);不能为空(summary);","i18n":null,"locale":null,"payload":{},"requestId":"add_request","debug":null}
+     */
+    @PostMapping("add")
+    public void add(@RequestBody StaffCommandRequest request) {
+        staffService.insert(request);
     }
 
-    @GetMapping("object")
-    public StaffResponse object() {
-        StaffResponse staffResponse = new StaffResponse();
-        staffResponse.setStaffName("name");
-        return staffResponse;
+    /**
+     * 格式化直接对象
+     * response:
+     * {"success":true,"level":"OFF","code":null,"message":null,"i18n":null,"locale":null,"payload":{"staffId":"453077515599085669","staffName":"wanglc_42","staffSettings":{"gender":"male"},"creator":"","createDatetime":"2022-12-13 15:20:43","state":"ACTIVE"},"requestId":"null","debug":null}
+     * @return
+     */
+    @GetMapping("anyOne")
+    public StaffResponse anyOne() {
+        return staffService.anyOne();
     }
 
-    @GetMapping("pagination")
-    public PaginationResult<StaffResponse> pagination() {
-        return staffService.pagination();
-    }
-
+    /**
+     * 使用ReturnWarpper处理流程，用于用户显式封装正常或异常的返回
+     *
+     * @param success
+     * @return ReturnMapper
+     */
     @GetMapping("returnWrapper")
     public ReturnWrapper<StaffResponse> returnWrapper(@RequestParam boolean success) {
         if (success) {
@@ -61,6 +75,11 @@ public class StaffController {
                 .message(MessageWrapper.of("110", "I am {}", "a wrapper"));
     }
 
+    /**
+     * 使用异常处理流程，全局处理并格式化异常
+     *
+     * @param level exception level
+     */
     @GetMapping("exception")
     public void exception(@RequestParam String level) {
         switch (level) {
@@ -75,6 +94,12 @@ public class StaffController {
         }
     }
 
+    @GetMapping("pagination")
+    public PaginationResult<StaffResponse> pagination() {
+        return staffService.pagination();
+    }
+
+
     @GetMapping("formattedResponse")
     public FormattedResponse<?> formattedResponse(@RequestParam boolean success) {
         if (success) {
@@ -84,6 +109,14 @@ public class StaffController {
         }
         return FormattedResponse.failure().code("1001").message("a formatted error");
     }
+
+    /**
+     * 支持sse和deferredResult方式的长轮询
+     *
+     * @param queryParams
+     * @param body
+     * @return
+     */
 
     @GetMapping("/longPull")
     @PostMapping("/longPull")
