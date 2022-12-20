@@ -3,7 +3,7 @@ package com.sintrue.matrix.example.controller;
 import com.sintrue.matrix.example.service.staff.StaffCommandRequest;
 import com.sintrue.matrix.example.service.staff.StaffResponse;
 import com.sintrue.matrix.example.service.staff.StaffService;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.async.DeferredResult;

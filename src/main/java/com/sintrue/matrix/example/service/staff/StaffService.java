@@ -3,7 +3,7 @@ package com.sintrue.matrix.example.service.staff;
 import com.sintrue.matrix.example.entity.Staff;
 import com.sintrue.matrix.example.entity.StaffState;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import org.springframework.stereotype.Service;
 import wang.liangchen.matrix.framework.commons.exception.MatrixErrorException;

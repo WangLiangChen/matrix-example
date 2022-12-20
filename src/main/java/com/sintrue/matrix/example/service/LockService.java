@@ -30,7 +30,7 @@ public class LockService {
         return "lock is acquired by:" + Thread.currentThread().getName();
     }
 
-    @Scheduled(fixedDelay = 20)
+    //@Scheduled(fixedDelay = 20)
     @MatrixLock(lockGroup = "group", lockKey = "key_1", lockAtLeast = "1m", lockAtMost = "5m")
     public void executeInLock() {
         ThreadUtil.INSTANCE.sleep(TimeUnit.SECONDS, 10);
