@@ -2,8 +2,11 @@ package com.sintrue.matrix.example.service.staff;
 
 import com.sintrue.matrix.example.entity.Staff;
 import com.sintrue.matrix.example.entity.StaffState;
-import jakarta.inject.Inject;
+
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Service;
+import wang.liangchen.matrix.framework.commons.exception.MatrixErrorException;
 import wang.liangchen.matrix.framework.commons.exception.MatrixInfoException;
 import wang.liangchen.matrix.framework.commons.object.ObjectUtil;
 import wang.liangchen.matrix.framework.commons.validation.ValidationUtil;
@@ -72,7 +75,7 @@ public class StaffService {
                 .resultFields(Staff::getStaffId, Staff::getStaffName, Staff::getStaffSettings, Staff::getCreator, Staff::getCreateDatetime, Staff::getState);
         List<Staff> staffList = standaloneDao.list(criteria);
         Optional<Staff> any = staffList.stream().findAny();
-        Staff staff = any.orElseThrow();
+        Staff staff = any.orElseThrow(() -> new MatrixErrorException("resource does not exist!"));
         // 类型转换
         return staff.to(StaffResponse.class);
     }

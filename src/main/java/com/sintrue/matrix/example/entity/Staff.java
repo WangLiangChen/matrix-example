@@ -1,8 +1,8 @@
 package com.sintrue.matrix.example.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Version;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Version;
 import wang.liangchen.matrix.framework.commons.enumeration.ConstantEnum;
 import wang.liangchen.matrix.framework.data.annotation.ColumnJson;
 import wang.liangchen.matrix.framework.data.annotation.ColumnMarkDelete;

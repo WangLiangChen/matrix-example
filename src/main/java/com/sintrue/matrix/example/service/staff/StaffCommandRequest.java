@@ -1,6 +1,6 @@
 package com.sintrue.matrix.example.service.staff;
 
-import jakarta.validation.constraints.NotBlank;
+import javax.validation.constraints.NotBlank;
 import wang.liangchen.matrix.framework.commons.enumeration.ConstantEnum;
 import wang.liangchen.matrix.framework.data.dao.entity.JsonField;
 
