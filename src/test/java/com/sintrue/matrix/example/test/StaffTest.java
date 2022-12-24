@@ -1,14 +1,19 @@
 package com.sintrue.matrix.example.test;
 
+import com.sintrue.matrix.example.entity.Staff;
+import com.sintrue.matrix.example.entity.StaffState;
 import com.sintrue.matrix.example.service.staff.StaffCommandRequest;
 import com.sintrue.matrix.example.service.staff.StaffResponse;
 import com.sintrue.matrix.example.service.staff.StaffService;
 import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import wang.liangchen.matrix.framework.commons.object.ObjectUtil;
 import wang.liangchen.matrix.framework.commons.random.RandomUtil;
+import wang.liangchen.matrix.framework.commons.type.ClassUtil;
 import wang.liangchen.matrix.framework.data.dao.StandaloneDao;
 import wang.liangchen.matrix.framework.data.dao.entity.JsonField;
+import wang.liangchen.matrix.framework.data.enumeration.StateEnum;
 import wang.liangchen.matrix.framework.data.pagination.PaginationResult;
 
 import java.util.ArrayList;
@@ -64,7 +69,7 @@ public class StaffTest {
 
     @Test
     public void list() {
-        List<StaffResponse> list = staffService.list();
+        List<StaffResponse> list = staffService.list(StaffState.NORMAL, StaffState.DELETED);
         System.out.println();
     }
 

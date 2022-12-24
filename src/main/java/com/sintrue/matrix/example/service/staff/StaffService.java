@@ -6,6 +6,7 @@ import com.sintrue.matrix.example.entity.StaffState;
 import jakarta.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import wang.liangchen.matrix.framework.commons.enumeration.ConstantEnum;
 import wang.liangchen.matrix.framework.commons.exception.MatrixErrorException;
 import wang.liangchen.matrix.framework.commons.exception.MatrixInfoException;
 import wang.liangchen.matrix.framework.commons.object.ObjectUtil;
@@ -80,7 +81,7 @@ public class StaffService {
         return staff.to(StaffResponse.class);
     }
 
-    public List<StaffResponse> list() {
+    public List<StaffResponse> list(ConstantEnum... from) {
         Staff staff = new Staff();
         staff.setStaffId(0L);
         Criteria<Staff> criteria = Criteria.of(staff)
@@ -90,8 +91,8 @@ public class StaffService {
                 // .distinct().forUpdate().disableCache()
                 // 构造查询条件
                 ._startWith(Staff::getStaffName, "wanglc")
+                ._in(Staff::getState, from)
                 ._lessThan(Staff::getCreateDatetime, LocalDateTime.MAX)
-                ._equals(Staff::getStaffId)
                 .orderBy(Staff::getCreateDatetime, OrderByDirection.asc)
                 .pageSize(5);
         List<Staff> staffs = this.standaloneDao.list(criteria);
