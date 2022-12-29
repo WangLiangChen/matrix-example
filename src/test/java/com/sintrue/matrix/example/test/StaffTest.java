@@ -8,6 +8,7 @@ import com.sintrue.matrix.example.service.staff.StaffService;
 import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
 import wang.liangchen.matrix.framework.commons.object.ObjectUtil;
 import wang.liangchen.matrix.framework.commons.random.RandomUtil;
 import wang.liangchen.matrix.framework.commons.type.ClassUtil;
@@ -18,6 +19,8 @@ import wang.liangchen.matrix.framework.data.pagination.PaginationResult;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.Executor;
 
 /**
  * @author Liangchen.Wang 2022-12-09 21:41
@@ -28,6 +31,10 @@ public class StaffTest {
     private StaffService staffService;
     @Inject
     private StandaloneDao standaloneDao;
+    @Inject
+    private Map<String, Executor> executorMap;
+    @Inject
+    private ApplicationContext applicationContext;
 
     @Test
     public void insert() {
