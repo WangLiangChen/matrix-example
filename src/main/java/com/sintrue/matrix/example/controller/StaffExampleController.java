@@ -25,11 +25,11 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/")
-public class StaffController {
+public class StaffExampleController {
     private final StaffService staffService;
 
     @Inject
-    public StaffController(StaffService staffService) {
+    public StaffExampleController(StaffService staffService) {
         this.staffService = staffService;
     }
 
