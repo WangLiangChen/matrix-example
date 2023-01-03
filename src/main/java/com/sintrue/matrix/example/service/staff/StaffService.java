@@ -65,7 +65,7 @@ public class StaffService {
     public int delete(Long staffId) {
         // 逻辑删除
         DeleteCriteria<Staff> criteria = DeleteCriteria.of(Staff.class)
-                .markDelete(Staff::getState, null)
+                .markDelete(Staff::getState,StaffState.DELETED)
                 ._equals(Staff::getStaffId, staffId);
         return this.standaloneDao.delete(criteria);
     }

@@ -3,7 +3,7 @@ package com.sintrue.matrix.example.test;
 import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import wang.liangchen.matrix.framework.generator.ddd.DDDStyleGenerator;
+import wang.liangchen.matrix.framework.generator.ddd.DDDGenerator;
 import wang.liangchen.matrix.framework.generator.tier3.Tier3Generator;
 
 /**
@@ -12,13 +12,13 @@ import wang.liangchen.matrix.framework.generator.tier3.Tier3Generator;
 @SpringBootTest
 public class GeneratorTest {
     @Inject
-    private DDDStyleGenerator dddStyleGenerator;
+    private DDDGenerator dddGenerator;
     @Inject
     private Tier3Generator tier3Generator;
 
     @Test
     public void testDDDGenerate() {
-        dddStyleGenerator.generate();
+        dddGenerator.generate();
     }
 
     @Test
