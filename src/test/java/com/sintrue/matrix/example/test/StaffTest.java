@@ -9,9 +9,11 @@ import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
+import wang.liangchen.matrix.framework.commons.exception.MatrixErrorException;
 import wang.liangchen.matrix.framework.commons.object.ObjectUtil;
 import wang.liangchen.matrix.framework.commons.random.RandomUtil;
 import wang.liangchen.matrix.framework.commons.type.ClassUtil;
+import wang.liangchen.matrix.framework.commons.validation.ValidationUtil;
 import wang.liangchen.matrix.framework.data.dao.StandaloneDao;
 import wang.liangchen.matrix.framework.data.dao.entity.JsonField;
 import wang.liangchen.matrix.framework.data.enumeration.StateEnum;
@@ -35,6 +37,16 @@ public class StaffTest {
     private Map<String, Executor> executorMap;
     @Inject
     private ApplicationContext applicationContext;
+
+    @Test
+    public void testException() {
+        try{
+            ValidationUtil.INSTANCE.throwException(NullPointerException.class,"{staffId.NotBlank.message}");
+        }catch (Exception e){
+
+            System.out.println();
+        }
+    }
 
     @Test
     public void insert() {
