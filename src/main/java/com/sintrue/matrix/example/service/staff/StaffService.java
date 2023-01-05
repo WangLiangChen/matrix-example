@@ -84,7 +84,7 @@ public class StaffService {
     public List<StaffResponse> list(ConstantEnum... from) {
         Staff staff = new Staff();
         staff.setStaffId(0L);
-        Criteria<Staff> criteria = Criteria.of(staff)
+        Criteria<Staff> criteria = Criteria.of(staff).ignoreStringBlank()
                 // 指定返回的列 .resultColumns("staff_id","staff_name","staff_settings")
                 .resultFields(Staff::getStaffId, Staff::getStaffName, Staff::getStaffSettings, Staff::getCreator, Staff::getCreateDatetime, Staff::getState)
                 // 特殊场景
