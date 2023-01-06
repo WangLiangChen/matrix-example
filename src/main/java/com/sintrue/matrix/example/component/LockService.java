@@ -1,4 +1,4 @@
-package com.sintrue.matrix.example.service;
+package com.sintrue.matrix.example.component;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.Scheduled;
