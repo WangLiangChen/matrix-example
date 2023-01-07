@@ -70,12 +70,12 @@
             <artifactId>matrix-framework-generator</artifactId>
             <version>${version.matrix}</version>
         </dependency>
-        <!-- matrix-cache local cache
+
         <dependency>
             <groupId>com.github.ben-manes.caffeine</groupId>
             <artifactId>caffeine</artifactId>
         </dependency>
-         -->
+
         <!-- matrix-cache distributed cache
         <dependency>
             <groupId>org.springframework.boot</groupId>
