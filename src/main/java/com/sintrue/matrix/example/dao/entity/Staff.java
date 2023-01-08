@@ -1,18 +1,23 @@
 package com.sintrue.matrix.example.dao.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Version;
 import wang.liangchen.matrix.framework.commons.object.ObjectUtil;
 import wang.liangchen.matrix.framework.commons.type.ClassUtil;
-import wang.liangchen.matrix.framework.data.annotation.IdStrategy;
-import wang.liangchen.matrix.framework.data.annotation.ColumnMarkDelete;
 import wang.liangchen.matrix.framework.data.annotation.ColumnJson;
+import wang.liangchen.matrix.framework.data.annotation.ColumnMarkDelete;
 import wang.liangchen.matrix.framework.data.annotation.ColumnState;
+import wang.liangchen.matrix.framework.data.annotation.IdStrategy;
 import wang.liangchen.matrix.framework.data.dao.entity.RootEntity;
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.function.BiConsumer;
 
 /**
  * 员工实体示例
- * @author  2023-01-06 14:20:03
+ * @author  2023-01-08 09:34:52
  */
 @Entity(name = "staff")
 public class Staff extends RootEntity {
@@ -77,12 +82,21 @@ public class Staff extends RootEntity {
         return ObjectUtil.INSTANCE.copyProperties(source, Staff.class);
     }
 
+    public static <S> Collection<Staff> valuesOf(Collection<S> sources) {
+        return ObjectUtil.INSTANCE.copyProperties(sources, Staff.class);
+    }
+
+    public static <S> Collection<Staff> valuesOf(Collection<S> sources, BiConsumer<S, Staff> biConsumer) {
+        return ObjectUtil.INSTANCE.copyProperties(sources, Staff.class, biConsumer);
+    }
+
     public static Staff newInstance() {
         return ClassUtil.INSTANCE.instantiate(Staff.class);
     }
+
     public static Staff newInstance(boolean initializeFields) {
         Staff entity = ClassUtil.INSTANCE.instantiate(Staff.class);
-        if(initializeFields) {
+        if (initializeFields) {
             entity.initializeFields();
         }
         return entity;

@@ -1,11 +1,12 @@
 package com.sintrue.matrix.example.service.message_pl;
 
+import com.sintrue.matrix.example.dao.entity.ExampleSettings;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import wang.liangchen.matrix.framework.commons.type.ClassUtil;
 import wang.liangchen.matrix.framework.commons.validation.InsertGroup;
+import wang.liangchen.matrix.framework.commons.validation.UpdateGroup;
 import wang.liangchen.matrix.framework.data.pagination.Pagination;
-
-import java.time.LocalDateTime;
 
 /**
  * @author 2023-01-06 14:20:03
@@ -15,6 +16,7 @@ public class ExampleRequest extends Pagination {
     /**
      * Primarykey
      */
+    @NotNull(groups = UpdateGroup.class)
     private Long staffId;
     /**
      * 名称
@@ -24,7 +26,8 @@ public class ExampleRequest extends Pagination {
     /**
      * Json格式配置信息
      */
-    private String staffSettings;
+    @NotNull(groups = InsertGroup.class)
+    private ExampleSettings staffSettings;
     /**
      * 简述说明
      */
@@ -51,14 +54,21 @@ public class ExampleRequest extends Pagination {
         this.staffName = staffName;
     }
 
-    public String getStaffSettings() {
-        return this.staffSettings;
+    public ExampleSettings getStaffSettings() {
+        return staffSettings;
     }
 
-    public void setStaffSettings(String staffSettings) {
+    public void setStaffSettings(ExampleSettings staffSettings) {
         this.staffSettings = staffSettings;
     }
 
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
 
     @Override
     public String toString() {

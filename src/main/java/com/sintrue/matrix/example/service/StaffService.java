@@ -7,7 +7,6 @@ import jakarta.inject.Inject;
 import org.springframework.stereotype.Service;
 import wang.liangchen.matrix.framework.commons.exception.ExceptionLevel;
 import wang.liangchen.matrix.framework.commons.object.ObjectUtil;
-import wang.liangchen.matrix.framework.commons.validation.InsertGroup;
 import wang.liangchen.matrix.framework.commons.validation.UpdateGroup;
 import wang.liangchen.matrix.framework.commons.validation.ValidationUtil;
 import wang.liangchen.matrix.framework.data.dao.StandaloneDao;
@@ -16,10 +15,11 @@ import wang.liangchen.matrix.framework.data.dao.criteria.DeleteCriteria;
 import wang.liangchen.matrix.framework.data.dao.criteria.UpdateCriteria;
 import wang.liangchen.matrix.framework.data.pagination.PaginationResult;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
- * @author 2023-01-06 14:20:03
+ * @author  2023-01-08 09:34:52
  */
 @Service
 public class StaffService {
@@ -31,30 +31,50 @@ public class StaffService {
     }
 
     public void insert(StaffRequest request) {
-        ValidationUtil.INSTANCE.validate(ExceptionLevel.INFO, request, InsertGroup.class);
-        // transform Request to Entity
+        // validate fields by validator
+        ValidationUtil.INSTANCE.validate(ExceptionLevel.INFO, request);
+        // transform to entity
         Staff entity = Staff.valueOf(request);
+        // TODO Assign values to fields
+
+        // Initialize default value which value is null
+        entity.initializeFields();
         this.standaloneDao.insert(entity);
+    }
+
+    public void insert(Collection<StaffRequest> requests) {
+        // validate empty by validator
+        ValidationUtil.INSTANCE.notEmpty(ExceptionLevel.INFO, requests);
+        // transform to entities and process every entity
+        Collection<Staff> entities = Staff.valuesOf(requests, (source, target) -> {
+            // TODO Assign values to fields
+
+            // Initialize default value which value is null
+            target.initializeFields();
+        });
+        this.standaloneDao.insert(entities);
     }
 
     public void delete(Long staffId) {
         DeleteCriteria<Staff> criteria = DeleteCriteria.of(Staff.class)
-                // mark delete & Tombstone
-                //.markDelete()
+                // logically deleted
+                // .markDelete()
                 ._equals(Staff::getStaffId, staffId);
         this.standaloneDao.delete(criteria);
     }
 
     public void update(StaffRequest request) {
         ValidationUtil.INSTANCE.validate(ExceptionLevel.INFO, request, UpdateGroup.class);
-        // transform Request to Entity
+        // validate primary key
+        ValidationUtil.INSTANCE.notEmpty(ExceptionLevel.INFO, request.getStaffId());
+        // transform to entity
         Staff entity = Staff.valueOf(request);
         this.standaloneDao.update(entity);
     }
 
     public int updateByCriteria(StaffRequest request) {
         ValidationUtil.INSTANCE.notNull(request);
-        // transform Request to Entity
+        // transform to entity
         Staff entity = Staff.newInstance();
         // TODO 将要更新的字段设置到entity
         // entity.

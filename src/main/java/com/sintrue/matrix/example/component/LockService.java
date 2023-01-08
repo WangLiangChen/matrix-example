@@ -1,12 +1,9 @@
 package com.sintrue.matrix.example.component;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import wang.liangchen.matrix.framework.commons.exception.MatrixErrorException;
 import wang.liangchen.matrix.framework.commons.thread.ThreadUtil;
 import wang.liangchen.matrix.framework.lock.annotation.MatrixLock;
-import wang.liangchen.matrix.framework.lock.core.LockConfiguration;
 import wang.liangchen.matrix.framework.lock.core.LockManager;
 import wang.liangchen.matrix.framework.lock.rdbms.RdbmsLockManager;
 

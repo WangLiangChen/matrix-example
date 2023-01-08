@@ -45,13 +45,11 @@
             <artifactId>matrix-framework-data-spring-boot-starter</artifactId>
             <version>${version.matrix}</version>
         </dependency>
-        <!-- matrix-cache
         <dependency>
             <groupId>wang.liangchen.matrix.cache</groupId>
             <artifactId>matrix-cache-sdk-spring-boot-starter</artifactId>
             <version>${version.matrix}</version>
         </dependency>
-         -->
         <!-- matrix-lock -->
         <dependency>
             <groupId>wang.liangchen.matrix</groupId>

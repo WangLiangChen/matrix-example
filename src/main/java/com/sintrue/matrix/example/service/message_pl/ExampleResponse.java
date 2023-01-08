@@ -1,5 +1,7 @@
 package com.sintrue.matrix.example.service.message_pl;
 
+import com.sintrue.matrix.example.dao.entity.ExampleSettings;
+import wang.liangchen.matrix.framework.commons.enumeration.ConstantEnum;
 import wang.liangchen.matrix.framework.commons.type.ClassUtil;
 
 import java.time.LocalDateTime;
@@ -20,11 +22,7 @@ public class ExampleResponse {
     /**
      * Json格式配置信息
      */
-    private String staffSettings;
-    /**
-     * 版本号,可用于乐观锁
-     */
-    private Integer version;
+    private ExampleSettings staffSettings;
     /**
      * 属主标识
      */
@@ -46,13 +44,9 @@ public class ExampleResponse {
      */
     private LocalDateTime modifyDatetime;
     /**
-     * 简述说明
+     * 状态,可继承的枚举
      */
-    private String summary;
-    /**
-     * 状态
-     */
-    private String state;
+    private ConstantEnum state;
 
     public static ExampleResponse newInstance() {
         return ClassUtil.INSTANCE.instantiate(ExampleResponse.class);
@@ -70,18 +64,15 @@ public class ExampleResponse {
     public void setStaffName(String staffName) {
         this.staffName = staffName;
     }
-    public String getStaffSettings() {
-        return this.staffSettings;
+
+    public ExampleSettings getStaffSettings() {
+        return staffSettings;
     }
-    public void setStaffSettings(String staffSettings) {
+
+    public void setStaffSettings(ExampleSettings staffSettings) {
         this.staffSettings = staffSettings;
     }
-    public Integer getVersion() {
-        return this.version;
-    }
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
+
     public String getOwner() {
         return this.owner;
     }
@@ -112,16 +103,12 @@ public class ExampleResponse {
     public void setModifyDatetime(LocalDateTime modifyDatetime) {
         this.modifyDatetime = modifyDatetime;
     }
-    public String getSummary() {
-        return this.summary;
+
+    public ConstantEnum getState() {
+        return state;
     }
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
-    public String getState() {
-        return this.state;
-    }
-    public void setState(String state) {
+
+    public void setState(ConstantEnum state) {
         this.state = state;
     }
 
@@ -132,13 +119,11 @@ public class ExampleResponse {
         builder.append("staffId = ").append(staffId).append(", ");
         builder.append("staffName = ").append(staffName).append(", ");
         builder.append("staffSettings = ").append(staffSettings).append(", ");
-        builder.append("version = ").append(version).append(", ");
         builder.append("owner = ").append(owner).append(", ");
         builder.append("creator = ").append(creator).append(", ");
         builder.append("createDatetime = ").append(createDatetime).append(", ");
         builder.append("modifier = ").append(modifier).append(", ");
         builder.append("modifyDatetime = ").append(modifyDatetime).append(", ");
-        builder.append("summary = ").append(summary).append(", ");
         builder.append("state = ").append(state).append(", ");
         builder.deleteCharAt(builder.length() - 1);
         builder.append("}");
