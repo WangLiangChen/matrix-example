@@ -1,4 +1,4 @@
-package com.sintrue.matrix.example;
+package com.sintrue.matrix.example.component;
 
 import java.util.List;
 

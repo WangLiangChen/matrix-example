@@ -1,4 +1,4 @@
-package com.sintrue.matrix.example.service;
+package com.sintrue.matrix.example.component;
 
 import org.springframework.stereotype.Service;
 import wang.liangchen.matrix.framework.data.dao.SequenceKey;

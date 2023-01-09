@@ -1,7 +1,7 @@
 package com.sintrue.matrix.example.test;
 
-import com.sintrue.matrix.example.service.LockService;
-import javax.inject.Inject;
+import com.sintrue.matrix.example.component.LockService;
+import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import wang.liangchen.matrix.framework.commons.thread.ThreadUtil;

@@ -1,12 +1,9 @@
-package com.sintrue.matrix.example.service;
+package com.sintrue.matrix.example.component;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import wang.liangchen.matrix.framework.commons.exception.MatrixErrorException;
 import wang.liangchen.matrix.framework.commons.thread.ThreadUtil;
 import wang.liangchen.matrix.framework.lock.annotation.MatrixLock;
-import wang.liangchen.matrix.framework.lock.core.LockConfiguration;
 import wang.liangchen.matrix.framework.lock.core.LockManager;
 import wang.liangchen.matrix.framework.lock.rdbms.RdbmsLockManager;
 
@@ -30,7 +27,7 @@ public class LockService {
         return "lock is acquired by:" + Thread.currentThread().getName();
     }
 
-    @Scheduled(fixedDelay = 20)
+    //@Scheduled(fixedDelay = 20)
     @MatrixLock(lockGroup = "group", lockKey = "key_1", lockAtLeast = "1m", lockAtMost = "5m")
     public void executeInLock() {
         ThreadUtil.INSTANCE.sleep(TimeUnit.SECONDS, 10);

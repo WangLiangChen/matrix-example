@@ -1,4 +1,4 @@
-create table staff
+create table if not exists staff
 (
     staff_id        INT8          not null,
     staff_name      VARCHAR(36)   not null,
@@ -65,6 +65,6 @@ comment
 /*==============================================================*/
 /* Index: staff_PK                             */
 /*==============================================================*/
-create unique index staff_PK on staff (
+create unique index if not exists staff_PK on staff (
     staff_id
 );
