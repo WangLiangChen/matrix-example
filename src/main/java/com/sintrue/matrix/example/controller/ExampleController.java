@@ -10,6 +10,7 @@ import wang.liangchen.matrix.framework.commons.exception.MatrixInfoException;
 import wang.liangchen.matrix.framework.commons.exception.MatrixWarnException;
 import wang.liangchen.matrix.framework.commons.runtime.MessageWrapper;
 import wang.liangchen.matrix.framework.commons.runtime.ReturnWrapper;
+import wang.liangchen.matrix.framework.data.pagination.PaginationResult;
 
 import java.util.Collection;
 
@@ -82,9 +83,29 @@ public class ExampleController {
         this.service.insert(request);
     }
 
+    @GetMapping("/delete")
+    public void delete(@RequestParam Long staffId) {
+        this.service.delete(staffId);
+    }
+
+    @PostMapping("/update")
+    public void update(@RequestBody ExampleRequest request) {
+        this.service.update(request);
+    }
+
+    @GetMapping("/select")
+    public ExampleResponse select(@RequestParam Long staffId) {
+        return this.service.select(staffId);
+    }
+
     @PostMapping("/list")
     public Collection<ExampleResponse> list(@RequestBody ExampleRequest request) {
         return this.service.list(request);
+    }
+
+    @PostMapping("/pagination")
+    public PaginationResult<ExampleResponse> pagination(@RequestBody ExampleRequest request) {
+        return this.service.pagination(request);
     }
 
 }

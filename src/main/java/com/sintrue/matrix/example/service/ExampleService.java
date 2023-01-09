@@ -2,10 +2,8 @@ package com.sintrue.matrix.example.service;
 
 import com.sintrue.matrix.example.dao.entity.Example;
 import com.sintrue.matrix.example.dao.entity.ExampleState;
-import com.sintrue.matrix.example.dao.entity.Staff;
 import com.sintrue.matrix.example.service.message_pl.ExampleRequest;
 import com.sintrue.matrix.example.service.message_pl.ExampleResponse;
-import com.sintrue.matrix.example.service.message_pl.StaffRequest;
 import org.springframework.stereotype.Service;
 import wang.liangchen.matrix.framework.commons.exception.ExceptionLevel;
 import wang.liangchen.matrix.framework.commons.object.ObjectUtil;
@@ -74,10 +72,10 @@ public class ExampleService {
     public int updateByCriteria(ExampleRequest request) {
         ValidationUtil.INSTANCE.notNull(request);
         // transform to entity
-        Staff entity = Staff.newInstance();
+        Example entity = Example.newInstance();
         // TODO 将要更新的字段设置到entity
         // entity.
-        UpdateCriteria<Staff> criteria = UpdateCriteria.of(entity);
+        UpdateCriteria<Example> criteria = UpdateCriteria.of(entity);
         // 强制更新,比如将值更新为null
         // .forceUpdate()
         // TODO 构造更新条件
@@ -85,11 +83,11 @@ public class ExampleService {
     }
 
     public ExampleResponse select(Long staffId) {
-        Criteria<Staff> criteria = Criteria.of(Staff.class)
+        Criteria<Example> criteria = Criteria.of(Example.class)
                 // Specify the returned columns
                 //.resultColumns()
-                ._equals(Staff::getStaffId, staffId);
-        Staff entity = this.standaloneDao.select(criteria);
+                ._equals(Example::getStaffId, staffId);
+        Example entity = this.standaloneDao.select(criteria);
         if (null == entity) {
             return null;
         }
@@ -98,8 +96,8 @@ public class ExampleService {
     }
 
     public boolean exists(Long staffId) {
-        Criteria<Staff> criteria = Criteria.of(Staff.class)
-                ._equals(Staff::getStaffId, staffId);
+        Criteria<Example> criteria = Criteria.of(Example.class)
+                ._equals(Example::getStaffId, staffId);
         return this.standaloneDao.exists(criteria);
     }
 
@@ -107,16 +105,16 @@ public class ExampleService {
         Criteria<Example> criteria = Criteria.of(Example.class);
         // TODO 构造查询条件
         List<Example> entities = this.standaloneDao.list(criteria);
-        // return ObjectUtil.INSTANCE.copyProperties(entities, StaffResponse.class, (source, target) -> {});
+        // return ObjectUtil.INSTANCE.copyProperties(entities, ExampleResponse.class, (source, target) -> {});
         return ObjectUtil.INSTANCE.copyProperties(entities, ExampleResponse.class);
     }
 
-    public PaginationResult<ExampleResponse> pagination(StaffRequest request) {
-        Criteria<Staff> criteria = Criteria.of(Staff.class);
+    public PaginationResult<ExampleResponse> pagination(ExampleRequest request) {
+        Criteria<Example> criteria = Criteria.of(Example.class);
         // TODO 构造查询条件
-        PaginationResult<Staff> entityPagination = this.standaloneDao.pagination(criteria);
+        PaginationResult<Example> entityPagination = this.standaloneDao.pagination(criteria);
         // transform Entity to Response
-        // return entityPagination.to(StaffResponse.class, (source, target) -> {});
+        // return entityPagination.to(ExampleResponse.class, (source, target) -> {});
         return entityPagination.to(ExampleResponse.class);
     }
 }
