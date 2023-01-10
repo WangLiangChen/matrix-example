@@ -3,10 +3,10 @@ package com.sintrue.matrix.example.test;
 import com.sintrue.matrix.example.dao.entity.ExampleSettings;
 import com.sintrue.matrix.example.service.ExampleService;
 import com.sintrue.matrix.example.service.message_pl.ExampleRequest;
-import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.inject.Inject;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

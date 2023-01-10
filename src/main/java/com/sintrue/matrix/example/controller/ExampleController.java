@@ -3,7 +3,6 @@ package com.sintrue.matrix.example.controller;
 import com.sintrue.matrix.example.service.ExampleService;
 import com.sintrue.matrix.example.service.message_pl.ExampleRequest;
 import com.sintrue.matrix.example.service.message_pl.ExampleResponse;
-import jakarta.inject.Inject;
 import org.springframework.web.bind.annotation.*;
 import wang.liangchen.matrix.framework.commons.exception.MatrixErrorException;
 import wang.liangchen.matrix.framework.commons.exception.MatrixInfoException;
@@ -11,6 +10,7 @@ import wang.liangchen.matrix.framework.commons.exception.MatrixWarnException;
 import wang.liangchen.matrix.framework.commons.runtime.MessageWrapper;
 import wang.liangchen.matrix.framework.commons.runtime.ReturnWrapper;
 
+import javax.inject.Inject;
 import java.util.Collection;
 
 @RestController

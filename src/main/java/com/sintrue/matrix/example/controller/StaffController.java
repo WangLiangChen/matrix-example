@@ -3,10 +3,10 @@ package com.sintrue.matrix.example.controller;
 import com.sintrue.matrix.example.service.StaffService;
 import com.sintrue.matrix.example.service.message_pl.StaffRequest;
 import com.sintrue.matrix.example.service.message_pl.StaffResponse;
-import jakarta.inject.Inject;
 import org.springframework.web.bind.annotation.*;
 import wang.liangchen.matrix.framework.data.pagination.PaginationResult;
 
+import javax.inject.Inject;
 import java.util.List;
 
 /**

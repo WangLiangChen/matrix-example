@@ -3,7 +3,6 @@ package com.sintrue.matrix.example.service;
 import com.sintrue.matrix.example.dao.entity.Staff;
 import com.sintrue.matrix.example.service.message_pl.StaffRequest;
 import com.sintrue.matrix.example.service.message_pl.StaffResponse;
-import jakarta.inject.Inject;
 import org.springframework.stereotype.Service;
 import wang.liangchen.matrix.framework.commons.exception.ExceptionLevel;
 import wang.liangchen.matrix.framework.commons.object.ObjectUtil;
@@ -15,6 +14,7 @@ import wang.liangchen.matrix.framework.data.dao.criteria.DeleteCriteria;
 import wang.liangchen.matrix.framework.data.dao.criteria.UpdateCriteria;
 import wang.liangchen.matrix.framework.data.pagination.PaginationResult;
 
+import javax.inject.Inject;
 import java.util.Collection;
 import java.util.List;
 

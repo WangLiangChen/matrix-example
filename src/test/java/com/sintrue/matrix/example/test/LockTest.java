@@ -1,11 +1,11 @@
 package com.sintrue.matrix.example.test;
 
 import com.sintrue.matrix.example.component.LockService;
-import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import wang.liangchen.matrix.framework.commons.thread.ThreadUtil;
 
+import javax.inject.Inject;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 

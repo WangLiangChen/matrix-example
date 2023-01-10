@@ -1,12 +1,13 @@
 package com.sintrue.matrix.example.service.message_pl;
 
 import com.sintrue.matrix.example.dao.entity.ExampleSettings;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import wang.liangchen.matrix.framework.commons.type.ClassUtil;
 import wang.liangchen.matrix.framework.commons.validation.InsertGroup;
 import wang.liangchen.matrix.framework.commons.validation.UpdateGroup;
 import wang.liangchen.matrix.framework.data.pagination.Pagination;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author 2023-01-06 14:20:03
