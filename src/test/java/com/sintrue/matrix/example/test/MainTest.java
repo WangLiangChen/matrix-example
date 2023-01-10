@@ -15,10 +15,16 @@ public class MainTest {
         set.add("a");
         System.out.println(set);
     }
+
     @Test
     public void testJson() throws JsonProcessingException {
         LocalDate localDate = LocalDate.now();
         String string = DefaultObjectMapper.INSTANCE.objectMapper().writeValueAsString(localDate);
         System.out.println(string);
+    }
+
+    @Test
+    public void testJavaVersion() {
+        System.out.println(System.getProperty("java.specification.version"));
     }
 }
