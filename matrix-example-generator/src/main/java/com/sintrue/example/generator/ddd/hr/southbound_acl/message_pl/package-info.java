@@ -1,0 +1,1 @@
+package com.sintrue.example.generator.ddd.hr.southbound_acl.message_pl;

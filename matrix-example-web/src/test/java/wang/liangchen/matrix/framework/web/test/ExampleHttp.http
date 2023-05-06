@@ -1,0 +1,44 @@
+GET http://localhost:8080/example/i18nMessageSource?locale=en-us
+Accept: application/json
+
+###
+
+GET http://localhost:8080/example/i18nValidation?lang=en-us
+Accept: application/json
+
+###
+
+GET http://localhost:8080/example/void?requestId=888888
+Accept: application/json
+
+###
+
+GET http://localhost:8080/example/returnWrapperSuccess
+Accept: application/json
+
+###
+
+GET http://localhost:8080/example/returnWrapperFailure
+Accept: application/json
+
+###
+
+GET http://localhost:8080/example/object
+Accept: application/json
+
+###
+
+GET http://localhost:8080/example/exception?level=INFO
+Accept: application/json
+
+###
+
+GET http://localhost:8080/example/exception?level=WARN
+Accept: application/json
+
+###
+
+GET http://localhost:8080/example/exception?level=ERROR
+Accept: application/json
+
+###

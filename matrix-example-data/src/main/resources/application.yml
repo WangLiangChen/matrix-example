@@ -1,0 +1,15 @@
+jdbc:
+  primary:
+    database: matrix_db
+    datasource: com.zaxxer.hikari.HikariDataSource
+    dialect: wang.liangchen.matrix.framework.data.datasource.dialect.PostgreSQLDialect
+    host: 127.0.0.1
+    password: matrix_pwd
+    port: 5432
+    schema: matrix_schema
+    username: matrix_user
+
+spring:
+  data:
+    redis:
+      host: localhost

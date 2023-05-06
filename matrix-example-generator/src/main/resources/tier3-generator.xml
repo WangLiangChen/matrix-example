@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- output:代码输出路径,默认为当前项目的src/main/java -->
+<entities package="com.sintrue.example.generator.tier3" datasource="" author="" output="">
+    <entity name="" table-name="staff">
+        <!-- 指定版本列名，用于乐观锁 -->
+        <column-version>version</column-version>
+        <!-- 指定状态列名;指定状态列是否使用框架提供的常量类ConstantEnum及其子类 -->
+        <!-- 自动生成和状态查询相关的代码 -->
+        <column-state useConstantEnum="false">state</column-state>
+        <!-- 指定逻辑删除的列和值 -->
+        <column-markdelete value="DELETED">state</column-markdelete>
+        <!-- 指定自动转换对象和Json的列 -->
+        <column-json>staff_settings</column-json>
+    </entity>
+</entities>

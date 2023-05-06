@@ -5,7 +5,13 @@
     <groupId>com.sintrue.matrix.example</groupId>
     <artifactId>matrix-example</artifactId>
     <version>2.0.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
+    <modules>
+        <module>matrix-example-web</module>
+        <module>matrix-example-data</module>
+        <module>matrix-example-generator</module>
+        <module>matrix-example-commons</module>
+    </modules>
 
     <properties>
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss(+8)</maven.build.timestamp.format>
@@ -13,7 +19,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <version.matrix>2.0.0-SNAPSHOT</version.matrix>
-        <version.springboot>3.0.0</version.springboot>
+        <version.springboot>3.0.6</version.springboot>
     </properties>
 
     <dependencyManagement>
@@ -27,70 +33,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>
-        <!-- matrix-web module -->
-        <dependency>
-            <groupId>wang.liangchen.matrix</groupId>
-            <artifactId>matrix-framework-web-spring-boot-starter</artifactId>
-            <version>${version.matrix}</version>
-        </dependency>
-        <!-- matrix-data module -->
-        <dependency>
-            <groupId>wang.liangchen.matrix</groupId>
-            <artifactId>matrix-framework-data-spring-boot-starter</artifactId>
-            <version>${version.matrix}</version>
-        </dependency>
-        <dependency>
-            <groupId>wang.liangchen.matrix.cache</groupId>
-            <artifactId>matrix-cache-sdk-spring-boot-starter</artifactId>
-            <version>${version.matrix}</version>
-        </dependency>
-        <!-- matrix-lock -->
-        <dependency>
-            <groupId>wang.liangchen.matrix</groupId>
-            <artifactId>matrix-framework-lock-spring-boot-starter</artifactId>
-            <version>${version.matrix}</version>
-        </dependency>
-        <!-- matrix-ddd specifications -->
-        <dependency>
-            <groupId>wang.liangchen.matrix</groupId>
-            <artifactId>matrix-framework-ddd</artifactId>
-            <version>${version.matrix}</version>
-        </dependency>
-        <!-- matrix entity generator -->
-        <dependency>
-            <groupId>wang.liangchen.matrix</groupId>
-            <artifactId>matrix-framework-generator</artifactId>
-            <version>${version.matrix}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.ben-manes.caffeine</groupId>
-            <artifactId>caffeine</artifactId>
-        </dependency>
-
-        <!-- matrix-cache distributed cache
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
-        </dependency>
-         -->
-        <!-- db connector -->
-        <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>42.5.0</version>
-        </dependency>
-    </dependencies>
 
     <build>
         <plugins>
