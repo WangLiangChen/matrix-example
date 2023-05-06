@@ -18,8 +18,8 @@ public class LockService {
     }
 
     // 返回值必须为void
-    //@Scheduled(fixedDelay = 2000)
-    //@MatrixLock(lockGroup = "matrix", lockKey = "matrix", lockAtLeast = "1m", lockAtMost = "5m")
+    @Scheduled(fixedDelay = 2000)
+    @MatrixLock(lockGroup = "matrix", lockKey = "scheduled", lockAtLeast = "1m", lockAtMost = "5m")
     public void executeInLockScheduled() {
         System.out.println("do something scheduled!");
     }

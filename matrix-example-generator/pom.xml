@@ -22,6 +22,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
+        <dependency>
+            <groupId>wang.liangchen.matrix</groupId>
+            <artifactId>matrix-framework-web-spring-boot-starter</artifactId>
+            <version>${version.matrix}</version>
+        </dependency>
         <!-- matrix-data module -->
         <dependency>
             <groupId>wang.liangchen.matrix</groupId>

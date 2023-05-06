@@ -2,10 +2,10 @@ package com.sintrue.example.generator.ddd.hr.northbound_ohs.message_pl;
 
 import wang.liangchen.matrix.framework.commons.type.ClassUtil;
 import wang.liangchen.matrix.framework.data.pagination.Pagination;
-import wang.liangchen.matrix.framework.ddd.message_pl.request.QueryRequest;
 import wang.liangchen.matrix.framework.ddd.message_pl.request.IQueryRequest;
+import wang.liangchen.matrix.framework.ddd.message_pl.request.QueryRequest;
 
-    import java.time.LocalDateTime;
+import java.time.LocalDateTime;
 
 /**
  * @author  2023-05-06 16:39:10

@@ -1,5 +1,10 @@
 package com.sintrue.example.generator.ddd.hr.domain.staff;
 
+import com.sintrue.example.generator.ddd.hr.southbound_acl.port.client.StaffClient;
+import com.sintrue.example.generator.ddd.hr.southbound_acl.port.file.StaffFile;
+import com.sintrue.example.generator.ddd.hr.southbound_acl.port.oss.StaffOSS;
+import com.sintrue.example.generator.ddd.hr.southbound_acl.port.publisher.StaffPublisher;
+import com.sintrue.example.generator.ddd.hr.southbound_acl.port.repository.StaffRepository;
 import jakarta.inject.Inject;
 import org.springframework.stereotype.Service;
 import wang.liangchen.matrix.framework.data.dao.criteria.Criteria;
@@ -9,11 +14,6 @@ import wang.liangchen.matrix.framework.data.dao.criteria.UpdateCriteria;
 import wang.liangchen.matrix.framework.data.pagination.PaginationResult;
 import wang.liangchen.matrix.framework.ddd.domain.DomainService;
 import wang.liangchen.matrix.framework.ddd.domain.IDomainService;
-import com.sintrue.example.generator.ddd.hr.southbound_acl.port.repository.StaffRepository;
-import com.sintrue.example.generator.ddd.hr.southbound_acl.port.client.StaffClient;
-import com.sintrue.example.generator.ddd.hr.southbound_acl.port.publisher.StaffPublisher;
-import com.sintrue.example.generator.ddd.hr.southbound_acl.port.file.StaffFile;
-import com.sintrue.example.generator.ddd.hr.southbound_acl.port.oss.StaffOSS;
 
 import java.util.Collection;
 import java.util.List;

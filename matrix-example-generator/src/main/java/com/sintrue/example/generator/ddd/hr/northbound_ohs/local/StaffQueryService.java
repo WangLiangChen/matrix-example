@@ -7,19 +7,12 @@ import com.sintrue.example.generator.ddd.hr.northbound_ohs.message_pl.StaffQuery
 import jakarta.inject.Inject;
 import org.springframework.stereotype.Service;
 import wang.liangchen.matrix.framework.commons.object.ObjectUtil;
-import wang.liangchen.matrix.framework.commons.type.ClassUtil;
-import wang.liangchen.matrix.framework.commons.validation.InsertGroup;
-import wang.liangchen.matrix.framework.commons.validation.UpdateGroup;
-import wang.liangchen.matrix.framework.commons.validation.ValidationUtil;
 import wang.liangchen.matrix.framework.data.dao.criteria.Criteria;
-import wang.liangchen.matrix.framework.data.dao.criteria.DeleteCriteria;
 import wang.liangchen.matrix.framework.data.dao.criteria.EntityGetter;
-import wang.liangchen.matrix.framework.data.dao.criteria.UpdateCriteria;
 import wang.liangchen.matrix.framework.data.pagination.PaginationResult;
 import wang.liangchen.matrix.framework.ddd.northbound_ohs.local.ApplicationService;
 import wang.liangchen.matrix.framework.ddd.northbound_ohs.local.IApplicationService;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 /**
