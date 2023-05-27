@@ -39,6 +39,10 @@ public class ExampleTest {
         example.initializeFields();
         example.setState(StateEnum.NORMAL);
         standaloneDao.insert(example);
+
+        Long staffId = example.getStaffId();
+        Example select = select(staffId);
+        System.out.println("inserted:" + select);
     }
 
     @Test
@@ -160,5 +164,11 @@ public class ExampleTest {
         PaginationResult<ExampleResponse> paginationResponse = pagination.to(ExampleResponse.class, (source, target) -> {
         });
         System.out.println();
+    }
+
+    private Example select(Long staffId) {
+        Criteria<Example> criteria = Criteria.of(Example.class)
+                ._equals(Example::getStaffId, staffId);
+        return standaloneDao.select(criteria);
     }
 }

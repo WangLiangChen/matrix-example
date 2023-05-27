@@ -1,8 +1,10 @@
 package com.sintrue.example.data.test.dao;
 
+import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Version;
+import org.hibernate.annotations.Type;
 import wang.liangchen.matrix.framework.commons.object.ObjectUtil;
 import wang.liangchen.matrix.framework.commons.type.ClassUtil;
 import wang.liangchen.matrix.framework.data.annotation.ColumnJson;
@@ -83,16 +85,4 @@ public class Example extends CommonEntity {
         this.staffSettings = staffSettings;
     }
 
-
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("Staff{");
-        builder.append("staffId = ").append(staffId).append(", ");
-        builder.append("staffName = ").append(staffName).append(", ");
-        builder.append("staffSettings = ").append(staffSettings).append(", ");
-        builder.deleteCharAt(builder.length() - 1);
-        builder.append("}");
-        return builder.toString();
-    }
 }
