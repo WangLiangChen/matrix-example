@@ -1,16 +1,19 @@
 package com.sintrue.example.web;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import wang.liangchen.matrix.framework.commons.exception.ExceptionLevel;
 import wang.liangchen.matrix.framework.commons.exception.MatrixErrorException;
 import wang.liangchen.matrix.framework.commons.exception.MatrixInfoException;
 import wang.liangchen.matrix.framework.commons.exception.MatrixWarnException;
+import wang.liangchen.matrix.framework.commons.random.RandomUtil;
 import wang.liangchen.matrix.framework.commons.runtime.MessageWrapper;
 import wang.liangchen.matrix.framework.commons.runtime.ReturnWrapper;
+import wang.liangchen.matrix.framework.commons.thread.ThreadUtil;
 import wang.liangchen.matrix.framework.commons.validation.ValidationUtil;
 import wang.liangchen.matrix.framework.springboot.context.MessageSourceUtil;
+
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Liangchen.Wang 2023-05-04 11:35
@@ -18,6 +21,16 @@ import wang.liangchen.matrix.framework.springboot.context.MessageSourceUtil;
 @RestController
 @RequestMapping("/example")
 public class ExampleController {
+    @PostMapping("string")
+    public Object string(@RequestBody Map<String, String> messages) {
+        String value = messages.get("value");
+        if ("exception".equals(value)) {
+            throw new MatrixErrorException("exception");
+        }
+        ThreadUtil.INSTANCE.sleep(TimeUnit.SECONDS, RandomUtil.INSTANCE.random(3, 4));
+        return value;
+    }
+
     @GetMapping("/i18nValidation")
     public void i18nValidation() {
         ValidationUtil.INSTANCE.isTrue(ExceptionLevel.INFO, false, "{say.hello}");

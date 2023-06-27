@@ -19,7 +19,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <version.matrix>2.0.0-SNAPSHOT</version.matrix>
-        <version.springboot>3.1.0</version.springboot>
+        <version.springboot>3.1.1</version.springboot>
     </properties>
 
     <dependencyManagement>
