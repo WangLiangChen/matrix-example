@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.sintrue</groupId>
+        <artifactId>matrix-example</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <artifactId>matrix-framework-example</artifactId>
+
+    <properties>
+        <version.spring.boot>3.5.5</version.spring.boot>
+        <version.matrix>3.0.0-SNAPSHOT</version.matrix>
+        <version.spring.cloud>2025.0.0</version.spring.cloud>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${version.spring.boot}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>wang.liangchen.matrix</groupId>
+            <artifactId>matrix-framework-spring-boot</artifactId>
+            <version>${version.matrix}</version>
+        </dependency>
+    </dependencies>
+
+
+</project>
