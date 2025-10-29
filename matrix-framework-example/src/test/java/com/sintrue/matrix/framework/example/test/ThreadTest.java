@@ -4,17 +4,20 @@ package com.sintrue.matrix.framework.example.test;
 import com.alibaba.ttl.TransmittableThreadLocal;
 import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import wang.liangchen.matrix.framework.commons.thread.ThreadUtil;
 import wang.liangchen.matrix.framework.commons.validation.ValidationUtil;
 
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.TimeUnit;
 
-//@SpringBootTest
+@SpringBootTest
 public class ThreadTest {
     @Inject
     private ThreadPoolTaskExecutor executor;
@@ -22,19 +25,21 @@ public class ThreadTest {
     private ThreadPoolTaskScheduler scheduler;
     @Inject
     private ExampleService service;
+    @Inject
+    private ApplicationContext applicationContext;
 
     @Test
     public void testTransmittableThreadLocal() throws InterruptedException, ExecutionException {
+        Arrays.stream(applicationContext.getBeanDefinitionNames()).forEach(System.out::println);
 
         ThreadUtil.INSTANCE.sleep(Duration.ofSeconds(5));
     }
 
     @Test
     public void testValidation() {
-        String result = ValidationUtil.INSTANCE.resolveMessage("{jakarta.validation.constraints.NotNull.message.default}");
+        String result = ValidationUtil.INSTANCE.resolveI18n("{jakarta.validation.constraints.NotNull.message.default}");
         System.out.println(result);
     }
-
 
 
     @Test
