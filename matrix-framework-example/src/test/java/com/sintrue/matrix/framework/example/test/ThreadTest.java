@@ -24,8 +24,6 @@ public class ThreadTest {
     @Inject
     private ThreadPoolTaskScheduler scheduler;
     @Inject
-    private ExampleService service;
-    @Inject
     private ApplicationContext applicationContext;
 
     @Test

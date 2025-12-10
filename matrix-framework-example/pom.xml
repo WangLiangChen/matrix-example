@@ -12,7 +12,7 @@
     <artifactId>matrix-framework-example</artifactId>
 
     <properties>
-        <version.spring.boot>3.5.7</version.spring.boot>
+        <version.spring.boot>3.5.8</version.spring.boot>
         <version.matrix>3.0.0-SNAPSHOT</version.matrix>
         <version.spring.cloud>2025.0.0</version.spring.cloud>
     </properties>
