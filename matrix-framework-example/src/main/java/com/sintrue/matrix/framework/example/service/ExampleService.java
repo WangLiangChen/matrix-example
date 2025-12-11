@@ -33,4 +33,9 @@ public class ExampleService implements IExampleService {
     public void oneVoid(String one) {
         System.out.println("oneVoid executed with: " + one);
     }
+
+    @Override
+    public void twoVoid(String one, String two) {
+        System.out.println("twoVoid executed with: " + one + ", " + two);
+    }
 }

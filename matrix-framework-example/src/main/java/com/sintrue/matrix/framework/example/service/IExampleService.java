@@ -11,4 +11,5 @@ public interface IExampleService {
 
      void zeroVoid();
      void oneVoid(String one);
+     void twoVoid(String one, String two);
 }
